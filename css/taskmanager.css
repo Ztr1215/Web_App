@@ -1,0 +1,24 @@
+.wrapper{
+    width: 1226px;
+    margin: 0 auto;
+    background-color: black;
+    display: grid;
+    grid-template-rows: 80px 80px 560px;
+}
+
+.first_line{
+    display: grid;
+    grid-template-columns: 1fr 226px 226px;
+}
+
+.name{
+    background-color: white;
+}
+
+.login{
+    background-color: yellow;
+}
+
+.register{
+    background-color: green;
+}
