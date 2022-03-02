@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!-- {% load staticfiles %}
+{% load rango_template_tags %} -->
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8" />
+    <title>
+        Freshmen World
+        <!-- {% block title_block %}
+            
+        {% endblock %} -->
+    </title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <script src="../base.js"></script>
+</head>
+
+<body>
+    <div>
+        <!-- {% block body_block %} -->
+        <div class="body">
+
+            <!-- {% if user.is_authenticated %} -->
+            <!-- <div class="top_bar_login">
+                <div class="logo"><img src="../image/logo.png" alt="Logo"></div>
+                <div class="selector">Course Selector</div>
+                <div class="manager">Task Manager</div>
+                <div class="logout">Logout</div> -->
+                <!-- {% endif %} -->
+                <div class="top_bar_nonlogin"> 
+                    <div class="logo"><img src="../image/logo.png" alt="Logo"></div>
+                    <div class="selector">Course Selector</div>
+                    <div class="manager">Task Manager</div>
+                    <div class="login">Login</div>
+                    <div class="register">Register</div>
+            </div>
+
+            <div class="bottom_bar">
+                <div class="message">
+                    <div class="name">message</div>
+                    <div></div>
+                </div>
+                <div class="details">
+                    <div class="detail_left">
+                        <ul>
+                            <li>About us</li>
+                            <li>Terms</li>
+                            <li>Help Documents</li>
+                            <li>Privacy and Cookies</li>
+                        </ul>
+                    </div>
+                    <div class="detail_right"></div>
+                </div>
+            </div>
+        </div>
+        <!-- {% endblock %} -->
+    </div>
+</body>
+
+</html>

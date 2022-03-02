@@ -37,26 +37,21 @@ li{
     here is css for main body
 */
 .mainbody{
-    width: 1226px;
+    width: 80vw;
     height: auto;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 300px 600px 1fr;
+    grid-template-columns: 1fr 2fr 1fr;
 }
 
 .mainbody_left{
-    width: 300px;
     height: 620px;
     background-color: white;
     display: grid;
-    grid-template-rows: 200px 40px 1fr;
-    grid-template-columns: 300px;
-    justify-content: center;
-    align-content: center;
+    grid-template-rows: 5fr 1fr 9.5fr;
     border: 1px solid black;
 }
 .weather{
-    width: 300px;
     height: 200px;
     border: 1px solid black;
     background-image: url(../image/03.png);
@@ -80,19 +75,13 @@ li{
 }
 
 .mainbody_center{
-    background-color: yellow;
-    width: 600px;
     height: 620px;
     display: grid;
-    grid-template-columns: 600px;
-    grid-template-rows: 400px 40px 1fr;
-    justify-content: center;
-    align-content: center;
+    grid-template-rows: 10fr 1fr 4.5fr;
     border: 1px solid black;
 }
 
 .schoolimg{
-    width: 600px;
     height: 400px;
     background-image: url(../image/01.jpg);
     background-size: cover;
@@ -100,7 +89,6 @@ li{
 }
 
 .searchbar{
-    width: 600px;
     height: 40px;
     border: 1px solid black;
     text-align: end;
