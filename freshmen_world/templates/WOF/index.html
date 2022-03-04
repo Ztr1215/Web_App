@@ -1,31 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'WOF/base.html' %}
+{% load staticfiles %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Index</title>
-    <link rel="stylesheet" href="../css/all.css">
-    <link rel="stylesheet" href="../css/base.css">
-    <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../css/reset.css">
-</head>
+{% block title_block %}
+    Index page!
+{% endblock %}
 
-<body>
-    <div class="wrapper">
-        <div class="topbar w clearfix">
-            <ul class="barul">
-                <li class="litext"><a href="">University Logo</a></li>
 
-                <li class="litext"><a href="../html/selecting.html">Course Selector</a></li>
+{% block body_block %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}"> 
 
-                <li class="litext"><a href="../html/taskmanager.html">Task Manager</a></li>
-
-                <li class="litext"><a href="../html/login.html">Login</a></li>
-
-                <li class="lastone"><a href="../html/register.html">Register</a></li>
-            </ul>
-        </div>
-    </div>
     <div class="mainbody">
 
         <div class="mainbody_left">
@@ -67,8 +50,5 @@
                 </div>
             </div>
         </div>
-
-    </div>
-</body>
-
-</html>
+    <div>
+{% endblock %}

@@ -1,0 +1,97 @@
+/* 
+    here is css for main body
+*/
+.mainbody{
+    border-top: 2px solid black;
+    width: 80vw;
+    height: auto;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+
+.mainbody_left{
+    height: 620px;
+    background-color: white;
+    display: grid;
+    grid-template-rows: 5fr 1fr 9.5fr;
+    border: 1px solid black;
+}
+.weather{
+    height: 200px;
+    border: 1px solid black;
+    background-image: url(../image/03.png);
+    background-size: cover;
+}
+
+.content_name{
+    line-height: 40px;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.content{
+    background-color: black;
+    color: white;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.content_show{
+    height: 1000px;  
+}
+
+.mainbody_center{
+    height: 620px;
+    display: grid;
+    grid-template-rows: 10fr 1fr 4.5fr;
+    border: 1px solid black;
+}
+
+.schoolimg{
+    height: 400px;
+    background-image: url(../image/01.jpg);
+    background-size: cover;
+    border: 1px solid black;
+}
+
+.searchbar{
+    height: 40px;
+    border: 1px solid black;
+    text-align: end;
+    line-height: 40px;
+}
+
+.info_of_uni{
+    background-color: black;
+    color: white;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.info_of_uni_show{
+    height: 1000px;
+}
+
+.mainbody_right{
+    border-top: 2px solid black;
+    height: 620px;
+    background-color: skyblue;
+    display: grid;
+    grid-template-rows: 40px 1fr;
+}
+
+.helper_title{
+    line-height: 40px;
+    text-align: center  ;
+}
+
+.helper{
+    background-color: rgb(80, 77, 77);
+    color: white;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.helper_show{
+    height: 1000px;
+}
