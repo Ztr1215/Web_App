@@ -6,7 +6,7 @@ from django.contrib.auth.models import User, datetime
 class StudentUser(models.Model):
     firstName = models.CharField(max_length=40, unique = False)
     secondName = models.CharField(max_length=40, unique = False)
-    passwoed = models.CharField(max_length=20, unique = True)
+    password = models.CharField(max_length=20, unique = True)
     email = models.CharField(max_length=60, unique = True)
     university = models.CharField(max_length=80, unique = False)
     degree = models.CharField(max_length=30, unique = False)
@@ -79,8 +79,7 @@ class Course(models.Model):
     def __str__(self):
         return self.name
         
-        
-        
+           
 class University(models.Model):
     name = models.CharField(max_length = 80,unique = False)
     Location = models.CharField(max_length = 80, unique = False)
