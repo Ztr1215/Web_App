@@ -1,6 +1,6 @@
 from django.db import models
 from django.template.defaultfilters import slugify
-from django.contrib.auth.models import User, datetime
+from django.contrib.auth.models import User
 
 # Create your models here.
 class StudentUser(models.Model):
@@ -27,10 +27,10 @@ class StudentUser(models.Model):
 class Task(models.Model):
     name=models.CharField(max_length=40, unique = False)
     completed= models.BooleanField(default=False);
-    dueDate= models.DateField(
-        verbose_name=_("Creation date"), auto_now_add=True, null=True
-    );
-    timePlanned= models.TimeField(auto_now=False, auto_now_add=False, **options);
+    dueDate= models.DateTimeField(
+        verbose_name=("Creation date"), auto_now_add=True, null=True
+    )
+    timePlanned= models.TimeField(auto_now=False, auto_now_add=False);
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)

@@ -3,11 +3,11 @@
 */
 .mainbody{
     border-top: 2px solid black;
-    width: 80vw;
-    height: auto;
-    margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
+    height: auto;
+    margin: 0 auto;
+    width: 80vw;
 }
 
 .mainbody_left{

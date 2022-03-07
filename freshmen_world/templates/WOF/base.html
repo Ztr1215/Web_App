@@ -11,54 +11,51 @@
                 Still making progress!
             {% endblock %} 
         </title>
-        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/base.js' %}"></script>
         <link rel="stylesheet" href="{% static 'css/reset.css' %}">
-        <script src="{% static 'js/base.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
     </head>
 
     <body>
         <div>
             {% block top_bar_block %}
-            <div class="body">
-
-                <!-- {% if user.is_authenticated %} -->
-                <!-- <div class="top_bar_login">
-                    <div class="logo"><img src="../image/logo.png" alt="Logo"></div>
-                    <div class="selector">Course Selector</div>
-                    <div class="manager">Task Manager</div>
-                    <div class="logout">Logout</div> -->
-                    <!-- {% endif %} -->
-                    <div class="top_bar_nonlogin"> 
-                        <div class="logo"><img src="{% static 'images/logo.png' %}" alt="Logo"></div>
-                        <div class="selector">Course Selector</div>
-                        <div class="manager">Task Manager</div>
-                        <div class="login">Login</div>
-                        <div class="register">Register</div>
-                </div>
+            <!-- {% if user.is_authenticated %} -->
+            <!-- <div class="top_bar_login">
+                <div class="logo"><img src="../image/logo.png" alt="Logo"></div>
+                <div class="selector">Course Selector</div>
+                <div class="manager">Task Manager</div>
+                <div class="logout">Logout</div> -->
+                <!-- {% endif %} -->
+            <div class="top_bar_nonlogin"> 
+                <div class="logo"><img src="{% static 'images/logo.png' %}" alt="Logo"></div>
+                <div class="bar_link"><a href="{% url 'WOF:selector' %}">Course Selector</a></div>
+                <div class="bar_link"><a href="{% url 'WOF:task_manager' %}">Task Manager</a></div>
+                <div class="bar_link"><a href="{% url 'WOF:user_login' %}">Login</a></div>
+                <div class="bar_link"><a href="{% url 'WOF:user_register' %}">Register</a></div>
+            </div>
             {% endblock %}
+            <div class="body">
                 {% block body_block %}
                 {% endblock %}
+            </div>
             {% block bottom_bar_block %}
-                <div class="bottom_bar">
-                    <div class="message">
-                        <div class="name">message</div>
-                        <div></div>
+            <div class="bottom_bar">
+                <div class="message">
+                    <div class="name">Message</div>
+                </div>
+                <div class="details">
+                    <div class="detail_left">
+                        <ul>
+                            <li>About us</li>
+                            <li>Terms</li>
+                            <li>Help Documents</li>
+                        </ul>
                     </div>
-                    <div class="details">
-                        <div class="detail_left">
-                            <ul>
-                                <li>About us</li>
-                                <li>Terms</li>
-                                <li>Help Documents</li>
-                                <li>Privacy and Cookies</li>
-                            </ul>
-                        </div>
-                        <div class="detail_right"></div>
-                    </div>
+                    <div class="detail_right"></div>
                 </div>
             </div>
-            {% endblock %}  
         </div>
+        {% endblock %}  
     </body>
-
 </html>

@@ -5,5 +5,9 @@ app_name = 'WOF'
 
 urlpatterns = [
 	path('', views.index, name='index'),
-	path('login/', views.login, name='login')
+	path('base/', views.base, name='base'),
+	path('login/', views.user_login, name='user_login'),
+	path('register/', views.user_register, name='user_register'),
+	path('course_selector/', views.selector, name='selector'),
+	path('taskmanager/', views.task_manager, name='task_manager'),
 ]
