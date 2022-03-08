@@ -35,15 +35,14 @@
     justify-content: center;
 }
 
-.bar_link a {
+/*.bar_link a {
     display: block;
     height: 100%;
     left: 0;
     position: relative;
     top: 0;
     width: 100%;
-}
-
+}*/
 
 .bottom_bar{
     border-top: 2px solid;

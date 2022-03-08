@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.urls import reverse
+from django.contrib.auth import authenticate, login, logout
 
 def index(request):
 	context_dict = {}
@@ -10,8 +12,23 @@ def base(request):
 	return render(request, 'WOF/base.html', context={})
 
 def user_login(request):
-	context_dict = {}
-	response = render(request, 'WOF/login.html', context=context_dict)
+	if request.method == 'POST':
+		username = request.POST.get('username')
+		password = request.POST.get('password')
+
+		user = authenticate(username=username, password=password)
+
+		if user:
+			if user.is_active:
+				login(request, user)
+				return redirect(reverse('WOF:index'))
+			else:
+				return HttpResponse("Account disabled")
+		else:
+			print(f"Invalid login details supplied: {username}, {password}")
+			return HttpResponse("Invalid login details supplied")
+	else:
+		return render(request, 'WOF/login.html')
 	return response
 
 def user_register(request):

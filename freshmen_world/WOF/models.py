@@ -3,25 +3,19 @@ from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 
 # Create your models here.
-class StudentUser(models.Model):
-    firstName = models.CharField(max_length=40, unique = False)
-    secondName = models.CharField(max_length=40, unique = False)
-    password = models.CharField(max_length=20, unique = True)
-    email = models.CharField(max_length=60, unique = True)
-    university = models.CharField(max_length=80, unique = False)
-    degree = models.CharField(max_length=30, unique = False)
+class StudentUserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    email = models.CharField(max_length=60, unique = False, default="")
+    university = models.CharField(max_length=80, unique = False, default="")
+    degree = models.CharField(max_length=30, unique = False, default="")
     level = models.IntegerField(default=0)
 
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
-        super(Category, self).save(*args, **kwargs)
-
-
     class Meta:
-        verbose_name_plural = 'StudentUsers'
+        verbose_name_plural = 'Student Users'
 
     def __str__(self):
-        return self.email
+        return self.user.username
 
 
 class Task(models.Model):

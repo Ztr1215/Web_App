@@ -20,20 +20,22 @@
     <body>
         <div>
             {% block top_bar_block %}
-            <!-- {% if user.is_authenticated %} -->
-            <!-- <div class="top_bar_login">
-                <div class="logo"><img src="../image/logo.png" alt="Logo"></div>
-                <div class="selector">Course Selector</div>
-                <div class="manager">Task Manager</div>
-                <div class="logout">Logout</div> -->
-                <!-- {% endif %} -->
-            <div class="top_bar_nonlogin"> 
-                <div class="logo"><img src="{% static 'images/logo.png' %}" alt="Logo"></div>
-                <div class="bar_link"><a href="{% url 'WOF:selector' %}">Course Selector</a></div>
-                <div class="bar_link"><a href="{% url 'WOF:task_manager' %}">Task Manager</a></div>
-                <div class="bar_link"><a href="{% url 'WOF:user_login' %}">Login</a></div>
-                <div class="bar_link"><a href="{% url 'WOF:user_register' %}">Register</a></div>
-            </div>
+                {% if user.is_authenticated %} 
+                    <div class="top_bar_login">
+                        <div class="logo"><img src="{% static 'images/logo.png' %}" alt="Logo"></div>
+                        <div class="bar_link"><a href="{% url 'WOF:selector' %}">Course Selector</a></div>
+                        <div class="bar_link"><a href="{% url 'WOF:task_manager' %}">Task Manager</a></div>
+                        <div class="bar_link"><a href="">Logout</a></div>
+                    </div>
+                {% else %}
+                    <div class="top_bar_nonlogin"> 
+                        <div class="logo"><img src="{% static 'images/logo.png' %}" alt="Logo"></div>
+                        <div class="bar_link"><a href="{% url 'WOF:selector' %}">Course Selector</a></div>
+                        <div class="bar_link"><a href="{% url 'WOF:task_manager' %}">Task Manager</a></div>
+                        <div class="bar_link"><a href="{% url 'WOF:user_login' %}">Login</a></div>
+                        <div class="bar_link"><a href="{% url 'WOF:user_register' %}">Register</a></div>
+                    </div>
+                 {% endif %}
             {% endblock %}
             <div class="body">
                 {% block body_block %}
