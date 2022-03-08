@@ -1,24 +1,76 @@
-.wrapper{
-    width: 1226px;
+.main_body{
+    width: 80vw;
     margin: 0 auto;
-    background-color: black;
     display: grid;
-    grid-template-rows: 80px 80px 560px;
+    grid-template-rows: 1fr 1fr 1fr 8fr;
 }
 
-.first_line{
+.first_part{
+    background-color: skyblue;
+    grid-template-columns: 1fr 3fr;
     display: grid;
-    grid-template-columns: 1fr 226px 226px;
+}
+.first_part div{
+    border: 1px black solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.name{
-    background-color: white;
+.title{
+    background-color: rgb(203, 234, 247);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-.login{
-    background-color: yellow;
+.title div{
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.register{
-    background-color: green;
+.week{
+    background-color: rgb(203, 234, 247);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+}
+
+.week div{
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.third_part{
+    background-color: rgb(203, 234, 247);
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+
+}
+
+.perline{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.date{
+    border: 1px solid black;
+    display: grid;
+    grid-template-rows: 20px 2fr;
+}
+
+.date div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.day{
+    border-bottom: 1px solid black;
+}
+
+.message{
+    margin: 10px auto;
 }

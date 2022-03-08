@@ -2,25 +2,24 @@
     here is css for main body
 */
 .mainbody{
+    width: 80vw;
+    height: auto;
+    margin: 0 auto;
     border-top: 2px solid black;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
-    height: auto;
-    margin: 0 auto;
-    width: 80vw;
 }
 
 .mainbody_left{
     height: 620px;
-    background-color: white;
+    border: 1px solid black;
     display: grid;
     grid-template-rows: 5fr 1fr 9.5fr;
-    border: 1px solid black;
+
 }
 .weather{
     height: 200px;
     border: 1px solid black;
-    background-image: url(../image/03.png);
     background-size: cover;
 }
 
@@ -31,8 +30,6 @@
 }
 
 .content{
-    background-color: black;
-    color: white;
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -42,15 +39,13 @@
 
 .mainbody_center{
     height: 620px;
+    border: 1px solid black;
     display: grid;
     grid-template-rows: 10fr 1fr 4.5fr;
-    border: 1px solid black;
 }
 
 .schoolimg{
     height: 400px;
-    background-image: url(../image/01.jpg);
-    background-size: cover;
     border: 1px solid black;
 }
 
@@ -62,8 +57,6 @@
 }
 
 .info_of_uni{
-    background-color: black;
-    color: white;
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -75,7 +68,6 @@
 .mainbody_right{
     border-top: 2px solid black;
     height: 620px;
-    background-color: skyblue;
     display: grid;
     grid-template-rows: 40px 1fr;
 }
@@ -86,8 +78,7 @@
 }
 
 .helper{
-    background-color: rgb(80, 77, 77);
-    color: white;
+    border-top: 1px solid black;
     overflow-y: scroll;
     overflow-x: hidden;
 }
