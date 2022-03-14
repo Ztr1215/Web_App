@@ -25,7 +25,7 @@
                         <div class="logo"><img src="{% static 'images/logo.png' %}" alt="Logo"></div>
                         <div class="bar_link"><a href="{% url 'WOF:selector' %}">Course Selector</a></div>
                         <div class="bar_link"><a href="{% url 'WOF:task_manager' %}">Task Manager</a></div>
-                        <div class="bar_link"><a href="">Logout</a></div>
+                        <div class="bar_link"><a href="{% url 'WOF:logout' %}">Logout</a></div>
                     </div>
                 {% else %}
                     <div class="top_bar_nonlogin"> 
@@ -37,12 +37,13 @@
                     </div>
                  {% endif %}
             {% endblock %}
-            <div class="body">
+            <div class="body_block">
                 {% block body_block %}
                 {% endblock %}
             </div>
             {% block bottom_bar_block %}
             <div class="bottom_bar">
+                <hr id="bottom_bar_line">
                 <div class="message">
                     <div class="name">Message</div>
                 </div>
@@ -54,7 +55,6 @@
                             <li>Help Documents</li>
                         </ul>
                     </div>
-                    <div class="detail_right"></div>
                 </div>
             </div>
         </div>

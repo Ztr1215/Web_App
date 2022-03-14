@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from WOF.forms import StudentUserForm, StudentUserProfileForm
 
 def index(request):
 	context_dict = {}
@@ -28,13 +30,31 @@ def user_login(request):
 			print(f"Invalid login details supplied: {username}, {password}")
 			return HttpResponse("Invalid login details supplied")
 	else:
-		return render(request, 'WOF/login.html')
+		return render(request, 'WOF/user_login.html')
 	return response
 
 def user_register(request):
-	context_dict = {}
-	response = render(request, 'WOF/register.html', context=context_dict)
-	return response
+	registered = False
+
+	if request.method == "POST":
+		student_user_form = StudentUserForm(request.POST)
+
+		if student_user_form.is_valid():
+			student_user = student_user_form.save()
+			student_user.set_password(student_user.password)
+			student_user.save()
+
+			registered = True
+		else:
+			print(student_user_form.errors)
+	else:
+		student_user_form = StudentUserForm()
+	return render(request, 'WOF/register2.html', context={'student_user_form': student_user_form, 'registered': registered})
+
+@login_required
+def user_logout(request):
+	logout(request)
+	return redirect(reverse('WOF:index'))
 
 def selector(request):
 	context_dict = {}

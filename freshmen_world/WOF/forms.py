@@ -1,5 +1,6 @@
 from django import forms
 from WOF.models import StudentUserProfile
+from django.contrib.auth.models import User
 
 class StudentUserForm(forms.ModelForm):
 	password = forms.CharField(widget=forms.PasswordInput())
@@ -10,5 +11,5 @@ class StudentUserForm(forms.ModelForm):
 
 class StudentUserProfileForm(forms.ModelForm):
 	class Meta:
-		model = UserProfile
+		model = StudentUserProfile
 		fields = ('email', 'university', 'degree', 'level', )

@@ -10,4 +10,5 @@ urlpatterns = [
 	path('register/', views.user_register, name='user_register'),
 	path('course_selector/', views.selector, name='selector'),
 	path('taskmanager/', views.task_manager, name='task_manager'),
+	path('logout/', views.user_logout, name='logout'),
 ]
