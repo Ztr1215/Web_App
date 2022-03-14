@@ -1,21 +1,42 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
-# Create your models here.
+class University(models.Model):
+    name = models.CharField(max_length = 80,unique = False)
+    location = models.CharField(max_length = 80, unique = False)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(University, self).save(*args, **kwargs)    
+    
+    class Meta:
+        verbose_name_plural = 'Universites'
+        
+    def __str__(self):
+        return self.name
+
 class StudentUserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
 
-    email = models.CharField(max_length=60, unique = False, default="")
-    university = models.CharField(max_length=80, unique = False, default="")
-    degree = models.CharField(max_length=30, unique = False, default="")
-    level = models.IntegerField(default=0)
+    email = models.CharField(max_length=60, unique = False, default="", null=True)
+    university = models.ForeignKey(University, on_delete=models.CASCADE ,null=True)
+    degree = models.CharField(max_length=30, unique = False, default="", null=True)
+    level = models.IntegerField(default=0, null=True)
 
     class Meta:
         verbose_name_plural = 'Student Users'
 
     def __str__(self):
         return self.user.username
+# This creates a user profile with each user registration
+@receiver(post_save, sender=User)
+def create_or_update_profile_signal(sender, instance, created, **kwargs):
+    if created:
+        StudentUserProfile.objects.create(user=instance)
+    instance.studentuserprofile.save()
 
 
 class Task(models.Model):
@@ -74,18 +95,4 @@ class Course(models.Model):
         return self.name
         
            
-class University(models.Model):
-    name = models.CharField(max_length = 80,unique = False)
-    Location = models.CharField(max_length = 80, unique = False)
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
-        super(Category, self).save(*args, **kwargs)    
-    
-    class Meta:
-        verbose_name_plural = 'Universites'
-        
-    def __str__(self):
-        return self.name
-
 

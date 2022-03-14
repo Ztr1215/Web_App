@@ -23,6 +23,7 @@
                 {% if user.is_authenticated %} 
                     <div class="top_bar_login">
                         <div class="logo"><img src="{% static 'images/logo.png' %}" alt="Logo"></div>
+                        <div class="bar_link"><a href="{% url 'WOF:index' %}">Homepage</a></div>
                         <div class="bar_link"><a href="{% url 'WOF:selector' %}">Course Selector</a></div>
                         <div class="bar_link"><a href="{% url 'WOF:task_manager' %}">Task Manager</a></div>
                         <div class="bar_link"><a href="{% url 'WOF:logout' %}">Logout</a></div>
@@ -30,6 +31,7 @@
                 {% else %}
                     <div class="top_bar_nonlogin"> 
                         <div class="logo"><img src="{% static 'images/logo.png' %}" alt="Logo"></div>
+                        <div class="bar_link"><a href="{% url 'WOF:index' %}">Homepage</a></div>
                         <div class="bar_link"><a href="{% url 'WOF:selector' %}">Course Selector</a></div>
                         <div class="bar_link"><a href="{% url 'WOF:task_manager' %}">Task Manager</a></div>
                         <div class="bar_link"><a href="{% url 'WOF:user_login' %}">Login</a></div>
