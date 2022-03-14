@@ -19,11 +19,11 @@ class University(models.Model):
         return self.name
 
 class StudentUserProfile(models.Model):
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    
     email = models.CharField(max_length=60, unique = False, default="", null=True)
     university = models.ForeignKey(University, on_delete=models.CASCADE ,null=True)
-    degree = models.CharField(max_length=30, unique = False, default="", null=True)
+    degree = models.CharField(max_length=80, unique = False, default="", null=True)
     level = models.IntegerField(default=0, null=True)
 
     class Meta:
@@ -31,6 +31,7 @@ class StudentUserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
+
 # This creates a user profile with each user registration
 @receiver(post_save, sender=User)
 def create_or_update_profile_signal(sender, instance, created, **kwargs):
