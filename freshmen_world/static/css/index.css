@@ -32,6 +32,7 @@
 .content{
     overflow-y: scroll;
     overflow-x: hidden;
+    background-color: yellowgreen;
 }
 .content_show{
     height: 1000px;  

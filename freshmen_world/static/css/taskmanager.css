@@ -1,76 +1,156 @@
-.main_body{
+.main_body {
     width: 80vw;
     margin: 0 auto;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 8fr;
+    grid-template-rows: 60px 60px 60px 1fr;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 20px;
+    overflow: hidden;
+    color: rgb(245, 252, 158);
+    background-image: url(../image/background.png);
+    opacity: 0.9;
+    background-position: bottom;
 }
 
-.first_part{
-    background-color: skyblue;
+.first_part {
     grid-template-columns: 1fr 3fr;
     display: grid;
 }
-.first_part div{
-    border: 1px black solid;
+
+
+.first_part div {
+    border: 1px white solid;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.title{
-    background-color: rgb(203, 234, 247);
+.title {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-.title div{
-    border: 1px solid black;
+.title div {
+    border: 1px solid white;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.week{
-    background-color: rgb(203, 234, 247);
+#last_month {
+    text-decoration: 2px underline;
+}
+
+#last_month:hover {
+    color: red;
+    cursor: pointer;
+}
+
+#next_month {
+    text-decoration: 2px underline;
+}
+
+#next_month:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.week {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+    grid-template-columns: minmax(70px, 1fr) minmax(70px, 1fr) minmax(70px, 1fr) minmax(70px, 1fr) minmax(70px, 1fr) minmax(70px, 1fr) minmax(70px, 1fr);
 }
 
-.week div{
-    border: 1px solid black;
+.week div {
+    border: 1px solid white;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
-.third_part{
-    background-color: rgb(203, 234, 247);
+.third_part {
+    /* background-image: url(../image/background.png); */
+    background-position: center;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
 
 }
 
-.perline{
+.perline {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
-.date{
-    border: 1px solid black;
+.date {
+    border: 1px solid white;
     display: grid;
     grid-template-rows: 20px 2fr;
+    cursor: pointer;
 }
 
-.date div{
-    display: flex;
+.date div {
+    display: grid;
     justify-content: center;
     align-items: center;
 }
 
-.day{
-    border-bottom: 1px solid black;
+.day {
+    border-bottom: 1px solid white;
 }
 
-.message{
+.message {
+    max-width: 1/8vw;
     margin: 10px auto;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.addTask {
+    width: 500px;
+    height: 650px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    display: none;
+}
+
+.container {
+    margin: 50px 15px
+}
+
+/* copy part */
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #276b2a;
+
+}
+
+.closeDiv {
+    position: relative;
+    top: 1%;
+    left: 92%
 }
