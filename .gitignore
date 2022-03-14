@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Personal ignore
+WOF/__pycache__/
+WOF/migrations/
