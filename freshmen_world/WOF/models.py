@@ -18,7 +18,7 @@ class University(models.Model):
     def __str__(self):
         return self.name
 
-class StudentUserProfile(models.Model):
+class StudentUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     
     email = models.CharField(max_length=60, unique = False, default="", null=True)
@@ -36,8 +36,8 @@ class StudentUserProfile(models.Model):
 @receiver(post_save, sender=User)
 def create_or_update_profile_signal(sender, instance, created, **kwargs):
     if created:
-        StudentUserProfile.objects.create(user=instance)
-    instance.studentuserprofile.save()
+        StudentUser.objects.create(user=instance)
+    instance.studentuser.save()
 
 
 class Task(models.Model):

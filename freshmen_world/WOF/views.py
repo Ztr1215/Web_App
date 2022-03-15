@@ -39,18 +39,27 @@ def user_register(request):
 
 	if request.method == "POST":
 		student_user_form = StudentUserForm(request.POST)
+		student_user_profile_form = StudentUserProfileForm(request.POST)
 
-		if student_user_form.is_valid():
+		if student_user_form.is_valid() and student_user_profile_form.is_valid():
 			student_user = student_user_form.save()
 			student_user.set_password(student_user.password)
 			student_user.save()
+
+			profile = student_user_profile_form.save(commit=False)
+			profile.user = student_user
+
+			profile.save()
 
 			registered = True
 		else:
 			print(student_user_form.errors)
 	else:
 		student_user_form = StudentUserForm()
-	return render(request, 'WOF/register2.html', context={'student_user_form': student_user_form, 'registered': registered})
+		student_user_profile_form = StudentUserProfileForm()
+	return render(request, 'WOF/register2.html', context={'student_user_form': student_user_form, 
+														'student_user_profile_form': student_user_profile_form,
+															'registered': registered})
 
 @login_required
 def user_logout(request):

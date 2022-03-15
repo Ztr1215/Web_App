@@ -8,13 +8,12 @@ university_choices = ((str(counter+1), list(University.objects.all())[counter])
 class StudentUserForm(forms.ModelForm):
 	password = forms.CharField(widget=forms.PasswordInput())
 	# university = forms.ChoiceField(choices=['john', 'sam'])
-	university = forms.ChoiceField(choices=university_choices)
 	class Meta:
 		model = User
-		fields = ('username', 'password', 'university',)
+		fields = ('username', 'password',)
 
 
 class StudentUserProfileForm(forms.ModelForm):
 	class Meta:
-		model = StudentUserProfile
+		model = StudentUser
 		fields = ('email', 'university', 'degree', 'level', )

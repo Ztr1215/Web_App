@@ -1,7 +1,7 @@
 from django.contrib import admin
-from WOF.models import StudentUserProfile, University
+from WOF.models import StudentUser, University
 
-admin.site.register(StudentUserProfile)
+admin.site.register(StudentUser)
 admin.site.register(University)
 
 # Register your models here.
