@@ -10,11 +10,11 @@
 		WOF says: <strong>thank you for registering!</strong>
 		<a href="{% url 'WOF:index' %}">Return to the homepage.</a><br />
 	{% else %}
-		<link rel="stylesheet" type="text/css" href="{% static 'css/user_register.css' %}"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/authentication.css' %}"/>
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
 		<form id="student_user_form" method="post" action="{% url 'WOF:user_register' %}" enctype="multipart/form-data">
-			<div id="register_input_div">
+			<div id="authentication_input_div">
 					{% csrf_token %}
 					{{ student_user_form.as_p }}
 					{{ student_user_profile_form.as_p }}

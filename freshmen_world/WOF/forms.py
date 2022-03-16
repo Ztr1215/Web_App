@@ -10,9 +10,9 @@ class StudentUserForm(forms.ModelForm):
 		fields = ('username', 'password', 'email')
 
 		widgets = {
-			'username' : forms.TextInput(attrs={'class' : 'register_field', 'placeholder' : 'Username'}),
-			'password' : forms.PasswordInput(attrs={'class' : 'register_field', 'placeholder' : 'Password'}),
-			'email' : forms.TextInput(attrs={'class' : 'register_field', 'placeholder' : 'Email'}),
+			'username' : forms.TextInput(attrs={'placeholder' : 'Username'}),
+			'password' : forms.PasswordInput(attrs={'placeholder' : 'Password'}),
+			'email' : forms.TextInput(attrs={'placeholder' : 'Email'}),
 		}
 
 		help_texts = {
@@ -38,9 +38,9 @@ class StudentUserProfileForm(forms.ModelForm):
 		fields = ('university', 'degree', 'level', )
 
 		widgets = {
-			'university' : forms.TextInput(attrs={'class' : 'register_field', 'placeholder' : 'University', }),
-			'degree' : forms.TextInput(attrs={'class' : 'register_field', 'placeholder' : 'Degree name', }),
-			'level' : forms.NumberInput(attrs={'class' : 'register_field'})
+			'university' : forms.TextInput(attrs={'placeholder' : 'University', }),
+			'degree' : forms.TextInput(attrs={'placeholder' : 'Degree name', }),
+			'level' : forms.NumberInput(attrs={})
 		}
 	
 		labels = {

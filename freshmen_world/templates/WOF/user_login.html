@@ -2,18 +2,18 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Login
+    Login Page
 {% endblock %}
 
 {% block body_block %}
-    <link rel="stylesheet" href="{% static 'css/user_login.css' %}">
-    <h1> Login page </h1>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/authentication.css' %}">
     <form id="login_form" method="post" action="{% url 'WOF:user_login' %}">
-        {% csrf_token %}
-        <input type="text" name="username" value="" size="40" /> 
-        <br />
-        <input type="password" name="password" value="" size="20" />
-        <br />
-        <input type="submit" value="submit" />
+        <div id="authentication_input_div">
+            <p class="p_login"><input type="text" name="username" value="" size="40" /></p> <br />
+            <p class="p_login"><input type="password" name="password" value="" size="20" ></p><br />
+            <p class="p_login"><input type="submit" value="Submit" /></p>
+        </div>
     </form>
 {% endblock %}

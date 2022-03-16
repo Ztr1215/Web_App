@@ -21,7 +21,7 @@ class University(models.Model):
 class StudentUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     
-    university = models.ForeignKey(University, on_delete=models.CASCADE ,null=True)
+    university = models.ForeignKey(University, on_delete=models.CASCADE , null=True)
     degree = models.CharField(max_length=80, unique = False, default="", null=True)
     level = models.IntegerField(default=0, null=True)
 
@@ -76,6 +76,7 @@ class Course(models.Model):
     credits = models.IntegerField(unique = False)
     courseConvener = models.CharField(max_length = 90, unique = False)
     courseNumber = models.CharField(max_length = 30, unique = False)
+    university = models.ForeignKey(University, on_delete=models.CASCADE , null=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
