@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'WOF/base.html' %}
+{% load staticfiles %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/taskmanager.css">
-    <link rel="stylesheet" href="../css/all.css">
-    <link rel="stylesheet" href="../css/reset.css">
-    <title>Task Manager</title>
-</head>
+{% block title_block %}
+    Task Manager
+{% endblock %}
 
-<body>
+{% block body_block %}
+    <link rel="stylesheet" href="{% static 'css/taskmanager.css' %}">
+    <link rel="stylesheet" href="{% static 'css/all.css' %}">
     <div class="main_body">
 
         <div class="first_part">
@@ -260,6 +256,4 @@
             update();
         };
     </script>
-</body>
-
-</html>
+{% endblock %}
