@@ -76,3 +76,8 @@ def task_manager(request):
 	response = render(request, 'WOF/taskmanager.html', context=context_dict)
 	return response
 
+# def submit_task(request):
+#     context_dict = {}
+#     if request.method == 'POST':
+#     	response = render(request,'WOF/form.html',context = context_dict)
+# 	return response
