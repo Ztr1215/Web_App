@@ -57,7 +57,7 @@ def user_register(request):
 	else:
 		student_user_form = StudentUserForm()
 		student_user_profile_form = StudentUserProfileForm()
-	return render(request, 'WOF/register2.html', context={'student_user_form': student_user_form, 
+	return render(request, 'WOF/user_register.html', context={'student_user_form': student_user_form, 
 														'student_user_profile_form': student_user_profile_form,
 															'registered': registered})
 

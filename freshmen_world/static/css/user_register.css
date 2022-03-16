@@ -1,0 +1,37 @@
+body {
+	text-align:  center;
+}
+
+#register_input_div {
+	background-color: #e3e3e3;
+	display: inline-block;
+	margin-top: 3vw;
+	padding-bottom: 2vw;
+	padding-top: 2vw;
+	width: 35vw;
+}
+
+#register_input_div p {
+	margin-bottom: 9px;
+	margin-top: 2px;
+}
+
+.errorlist, { 
+	font-family: "Roboto", "Open Sans", monospace;
+}
+
+#register_input_div input[type=text], input[type=password], input[type=number] {
+	box-sizing: border-box;
+	padding: 12px 20px;
+	width: 80%;
+}
+
+#register_input_div input[type=submit] {
+	background-color: #ec2727;
+	border-color: #f26e6e;
+	box-sizing: border-box;
+	font-family: "Roboto", "Open Sans", monospace;
+	font-weight: 900;
+	padding: 12px;
+	width: 50%;
+}
