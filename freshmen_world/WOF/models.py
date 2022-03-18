@@ -35,9 +35,10 @@ class StudentUser(models.Model):
 class Task(models.Model):
     name=models.CharField(max_length=40, unique = True)
     completed= models.BooleanField(default=False);
-    dueDate= models.DateTimeField(
-        verbose_name=("Creation date"), auto_now_add=True, null=True
-    )
+    #dueDate= models.DateTimeField(
+      #  verbose_name=("Creation date"), auto_now_add=True, null=True
+    #)
+    date= models.DateField(auto_now=True)
     timePlanned= models.TimeField(auto_now=True, auto_now_add=False);
 
     def save(self, *args, **kwargs):
