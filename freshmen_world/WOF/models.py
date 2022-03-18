@@ -39,7 +39,7 @@ class Task(models.Model):
       #  verbose_name=("Creation date"), auto_now_add=True, null=True
     #)
     date= models.DateField(auto_now=True)
-    timePlanned= models.TimeField(auto_now=True, auto_now_add=False);
+    timePlanned= models.IntegerField(default=0, null=True);
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
