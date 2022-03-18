@@ -1,5 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'WOF/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Task Manager
+{% endblock %}
 
 <head>
     <meta charset="UTF-8">
@@ -11,240 +15,239 @@
     <title>Task Manager</title>
 </head>
 
-<body>
-    <div class="main_body">
+{% block body_block %}
+    <link rel="stylesheet" href="{% static 'css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'css/taskmanager.css' %}">
+    <div class="first_part">
+        <div class="course">Courses</div>
+        <div class="month">Date</div>
+    </div>
 
-        <div class="first_part">
-            <div class="course">Courses</div>
-            <div class="month">Date</div>
-        </div>
+    <div class="title">
+        <div id="last_month">Last Month</div>
+        <div id="year"></div>
+        <div id="month"></div>
+        <div id="next_month">Next Month</div>
+    </div>
 
-        <div class="title">
-            <div id="last_month">Last Month</div>
-            <div id="year"></div>
-            <div id="month"></div>
-            <div id="next_month">Next Month</div>
-        </div>
+    <div class="week">
+        <div id="Monday">Monday</div>
+        <div id="Tuesday">Tuesday</div>
+        <div id="Wednesday">Wednesday</div>
+        <div id="Thursday">Thursday</div>
+        <div id="Friday">Friday</div>
+        <div id="Saturday">Saturday</div>
+        <div id="Sunday">Sunday</div>
+    </div>
 
-        <div class="week">
-            <div id="Monday">Monday</div>
-            <div id="Tuesday">Tuesday</div>
-            <div id="Wednesday">Wednesday</div>
-            <div id="Thursday">Thursday</div>
-            <div id="Friday">Friday</div>
-            <div id="Saturday">Saturday</div>
-            <div id="Sunday">Sunday</div>
-        </div>
-
-        <div class="third_part">
-            <div class="perline">
-                <div id="1st" class="date" onclick="showWindow(this)">
-                    <div class="day" id="1"></div>
-                    <div class="message">
-                    </div>
-                </div>
-                <div id="2nd" class="date" onclick="showWindow(this)">
-                    <div class="day" id="2"></div>
-                    <div class="message">OOSE<br>ADS2<br>AF2<br>CS1S</div>
-                </div>
-                <div id="3rd" class="date" onclick="showWindow(this)">
-                    <div class="day" id="3"></div>
-                    <div class="message">NOSE</div>
-                </div>
-                <div id="4th" class="date" onclick="showWindow(this)">
-                    <div class="day" id="4"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="5th" class="date" onclick="showWindow(this)">
-                    <div class="day" id="5"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="6th" class="date" onclick="showWindow(this)">
-                    <div class="day" id="6"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="7th" class="date" onclick="showWindow(this)">
-                    <div class="day" id="7"></div>
-                    <div class="message"></div>
+    <div class="third_part">
+        <div class="perline">
+            <div id="1st" class="date" onclick="showWindow(this)">
+                <div class="day" id="1"></div>
+                <div class="message">
                 </div>
             </div>
-            <div class="perline">
-                <div id="8th" class="date" onclick="showWindow(this)">
-                    <div class="day" id="8"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="9th" class="date" onclick="showWindow(this)">
-                    <div class="day" id="9"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="10th" class="date" onclick="showWindow(this)">
-                    <div class="day" id="10"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="11st" class="date" onclick="showWindow(this)">
-                    <div class="day" id="11"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="12nd" class="date" onclick="showWindow(this)">
-                    <div class="day" id="12"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="13rd" class="date" onclick="showWindow(this)">
-                    <div class="day" id="13"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="14th" class="date" onclick="showWindow(this)">
-                    <div class="day" id="14"></div>
-                    <div class="message"></div>
-                </div>
+            <div id="2nd" class="date" onclick="showWindow(this)">
+                <div class="day" id="2"></div>
+                <div class="message">OOSE<br>ADS2<br>AF2<br>CS1S</div>
             </div>
-            <div class="perline">
-                <div id="15th" class="date" onclick="showWindow(this)">
-                    <div class="day" id="15"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="16th" class="date" onclick="showWindow(this)">
-                    <div class="day" id="16"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="17th" class="date" onclick="showWindow(this)">
-                    <div class="day" id="17"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="18th" class="date" onclick="showWindow(this)">
-                    <div class="day" id="18"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="19th" class="date" onclick="showWindow(this)">
-                    <div class="day" id="19"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="20th" class="date" onclick="showWindow(this)">
-                    <div class="day" id="20"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="21st" class="date" onclick="showWindow(this)">
-                    <div class="day" id="21"></div>
-                    <div class="message"></div>
-                </div>
+            <div id="3rd" class="date" onclick="showWindow(this)">
+                <div class="day" id="3"></div>
+                <div class="message">NOSE</div>
             </div>
-            <div class="perline">
-                <div id="22nd" class="date" onclick="showWindow(this)">
-                    <div class="day" id="22"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="23rd" class="date" onclick="showWindow(this)">
-                    <div class="day" id="23"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="24th" class="date" onclick="showWindow(this)">
-                    <div class="day" id="24"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="25th" class="date" onclick="showWindow(this)">
-                    <div class="day" id="25"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="26th" class="date" onclick="showWindow(this)">
-                    <div class="day" id="26"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="27th" class="date" onclick="showWindow(this)">
-                    <div class="day" id="27"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="28th" class="date" onclick="showWindow(this)">
-                    <div class="day" id="28"></div>
-                    <div class="message"></div>
-                </div>
+            <div id="4th" class="date" onclick="showWindow(this)">
+                <div class="day" id="4"></div>
+                <div class="message"></div>
             </div>
-            <div class="perline">
-                <div id="29th" class="date" onclick="showWindow(this)">
-                    <div class="day" id="29"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="30th" class="date" onclick="showWindow(this)">
-                    <div class="day" id="30"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="31st" class="date" onclick="showWindow(this)">
-                    <div class="day" id="31"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="32nd" class="date" onclick="showWindow(this)">
-                    <div class="day" id="32"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="33rd" class="date" onclick="showWindow(this)">
-                    <div class="day" id="33"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="34th" class="date" onclick="showWindow(this)">
-                    <div class="day" id="34"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="35th" class="date" onclick="showWindow(this)">
-                    <div class="day" id="35"></div>
-                    <div class="message"></div>
-                </div>
+            <div id="5th" class="date" onclick="showWindow(this)">
+                <div class="day" id="5"></div>
+                <div class="message"></div>
             </div>
-            <div class="perline">
-                <div id="36th" class="date" onclick="showWindow(this)">
-                    <div class="day" id="36"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="37th" class="date" onclick="showWindow(this)">
-                    <div class="day" id="37"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="38th" class="date" onclick="showWindow(this)">
-                    <div class="day" id="38"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="39th" class="date" onclick="showWindow(this)">
-                    <div class="day" id="39"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="40th" class="date" onclick="showWindow(this)">
-                    <div class="day" id="40"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="41st" class="date" onclick="showWindow(this)">
-                    <div class="day" id="41"></div>
-                    <div class="message"></div>
-                </div>
-                <div id="42nd" class="date" onclick="showWindow(this)">
-                    <div class="day" id="42"></div>
-                    <div class="message"></div>
-                </div>
+            <div id="6th" class="date" onclick="showWindow(this)">
+                <div class="day" id="6"></div>
+                <div class="message"></div>
+            </div>
+            <div id="7th" class="date" onclick="showWindow(this)">
+                <div class="day" id="7"></div>
+                <div class="message"></div>
             </div>
         </div>
-
-        <div id="addTask" class="addTask">
-            <div class="closeDiv">
-                <button onclick="closeWindow()">X</button>
+        <div class="perline">
+            <div id="8th" class="date" onclick="showWindow(this)">
+                <div class="day" id="8"></div>
+                <div class="message"></div>
             </div>
-            <div class="container">
-                <form action="taskmanager.html" method="get">
-                    <label for="task">Task Name</label>
-                    <input type="text" id="task" name="task" placeholder="Your task is..">
-
-                    <label for="courseName">Course Name</label>
-                    <input type="text" id="courseName" name="courseName" placeholder="Your course name..">
-
-                    <label for="monthTime">Month</label>
-                    <select id="monthTime" name="monthTime" onchange="addDayOption()">
-                    </select>
-
-                    <label for="dayTime">Day</label>
-                    <select id="dayTime" name="dayTime">
-                    </select>
-
-                    <input type="submit" value="Submit">
-
-                </form>
-
+            <div id="9th" class="date" onclick="showWindow(this)">
+                <div class="day" id="9"></div>
+                <div class="message"></div>
             </div>
+            <div id="10th" class="date" onclick="showWindow(this)">
+                <div class="day" id="10"></div>
+                <div class="message"></div>
+            </div>
+            <div id="11st" class="date" onclick="showWindow(this)">
+                <div class="day" id="11"></div>
+                <div class="message"></div>
+            </div>
+            <div id="12nd" class="date" onclick="showWindow(this)">
+                <div class="day" id="12"></div>
+                <div class="message"></div>
+            </div>
+            <div id="13rd" class="date" onclick="showWindow(this)">
+                <div class="day" id="13"></div>
+                <div class="message"></div>
+            </div>
+            <div id="14th" class="date" onclick="showWindow(this)">
+                <div class="day" id="14"></div>
+                <div class="message"></div>
+            </div>
+        </div>
+        <div class="perline">
+            <div id="15th" class="date" onclick="showWindow(this)">
+                <div class="day" id="15"></div>
+                <div class="message"></div>
+            </div>
+            <div id="16th" class="date" onclick="showWindow(this)">
+                <div class="day" id="16"></div>
+                <div class="message"></div>
+            </div>
+            <div id="17th" class="date" onclick="showWindow(this)">
+                <div class="day" id="17"></div>
+                <div class="message"></div>
+            </div>
+            <div id="18th" class="date" onclick="showWindow(this)">
+                <div class="day" id="18"></div>
+                <div class="message"></div>
+            </div>
+            <div id="19th" class="date" onclick="showWindow(this)">
+                <div class="day" id="19"></div>
+                <div class="message"></div>
+            </div>
+            <div id="20th" class="date" onclick="showWindow(this)">
+                <div class="day" id="20"></div>
+                <div class="message"></div>
+            </div>
+            <div id="21st" class="date" onclick="showWindow(this)">
+                <div class="day" id="21"></div>
+                <div class="message"></div>
+            </div>
+        </div>
+        <div class="perline">
+            <div id="22nd" class="date" onclick="showWindow(this)">
+                <div class="day" id="22"></div>
+                <div class="message"></div>
+            </div>
+            <div id="23rd" class="date" onclick="showWindow(this)">
+                <div class="day" id="23"></div>
+                <div class="message"></div>
+            </div>
+            <div id="24th" class="date" onclick="showWindow(this)">
+                <div class="day" id="24"></div>
+                <div class="message"></div>
+            </div>
+            <div id="25th" class="date" onclick="showWindow(this)">
+                <div class="day" id="25"></div>
+                <div class="message"></div>
+            </div>
+            <div id="26th" class="date" onclick="showWindow(this)">
+                <div class="day" id="26"></div>
+                <div class="message"></div>
+            </div>
+            <div id="27th" class="date" onclick="showWindow(this)">
+                <div class="day" id="27"></div>
+                <div class="message"></div>
+            </div>
+            <div id="28th" class="date" onclick="showWindow(this)">
+                <div class="day" id="28"></div>
+                <div class="message"></div>
+            </div>
+        </div>
+        <div class="perline">
+            <div id="29th" class="date" onclick="showWindow(this)">
+                <div class="day" id="29"></div>
+                <div class="message"></div>
+            </div>
+            <div id="30th" class="date" onclick="showWindow(this)">
+                <div class="day" id="30"></div>
+                <div class="message"></div>
+            </div>
+            <div id="31st" class="date" onclick="showWindow(this)">
+                <div class="day" id="31"></div>
+                <div class="message"></div>
+            </div>
+            <div id="32nd" class="date" onclick="showWindow(this)">
+                <div class="day" id="32"></div>
+                <div class="message"></div>
+            </div>
+            <div id="33rd" class="date" onclick="showWindow(this)">
+                <div class="day" id="33"></div>
+                <div class="message"></div>
+            </div>
+            <div id="34th" class="date" onclick="showWindow(this)">
+                <div class="day" id="34"></div>
+                <div class="message"></div>
+            </div>
+            <div id="35th" class="date" onclick="showWindow(this)">
+                <div class="day" id="35"></div>
+                <div class="message"></div>
+            </div>
+        </div>
+        <div class="perline">
+            <div id="36th" class="date" onclick="showWindow(this)">
+                <div class="day" id="36"></div>
+                <div class="message"></div>
+            </div>
+            <div id="37th" class="date" onclick="showWindow(this)">
+                <div class="day" id="37"></div>
+                <div class="message"></div>
+            </div>
+            <div id="38th" class="date" onclick="showWindow(this)">
+                <div class="day" id="38"></div>
+                <div class="message"></div>
+            </div>
+            <div id="39th" class="date" onclick="showWindow(this)">
+                <div class="day" id="39"></div>
+                <div class="message"></div>
+            </div>
+            <div id="40th" class="date" onclick="showWindow(this)">
+                <div class="day" id="40"></div>
+                <div class="message"></div>
+            </div>
+            <div id="41st" class="date" onclick="showWindow(this)">
+                <div class="day" id="41"></div>
+                <div class="message"></div>
+            </div>
+            <div id="42nd" class="date" onclick="showWindow(this)">
+                <div class="day" id="42"></div>
+                <div class="message"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="addTask" class="addTask">
+        <div class="closeDiv">
+            <button onclick="closeWindow()">X</button>
+        </div>
+        <div class="container">
+            <form action="taskmanager.html" method="get">
+                <label for="task">Task Name</label>
+                <input type="text" id="task" name="task" placeholder="Your task is..">
+
+                <label for="courseName">Course Name</label>
+                <input type="text" id="courseName" name="courseName" placeholder="Your course name..">
+
+                <label for="monthTime">Month</label>
+                <select id="monthTime" name="monthTime" onchange="addDayOption()">
+                </select>
+
+                <label for="dayTime">Day</label>
+                <select id="dayTime" name="dayTime">
+                </select>
+
+                <input type="submit" value="Submit">
+
+            </form>
+
         </div>
     </div>
 
@@ -277,7 +280,7 @@
                 if (document.getElementById(j + i).innerHTML == day && document.getElementById("month").innerHTML == array[currentMonth]) {
                     document.getElementById(j + i).style.color = "red";
                 } else {
-                    document.getElementById(j + i).style.color = "rgb(245, 252, 158)";
+                    document.getElementById(j + i).style.color = "black";
                 }
                 z++;
             }
@@ -328,6 +331,4 @@
             document.getElementById("addTask").style.display = "none";
         };
     </script>
-</body>
-
-</html>
+{% endblock %}

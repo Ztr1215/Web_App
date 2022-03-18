@@ -129,5 +129,7 @@ dmypy.json
 .pyre/
 
 # Personal ignore
-WOF/__pycache__/
-WOF/migrations/
+freshmen_world/WOF/__pycache__/
+freshmen_world/WOF/migrations/
+freshmen_world/__pycache__/
+freshmen_world/db.sqlite3
