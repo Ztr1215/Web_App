@@ -1,4 +1,22 @@
-.body_block{
+.top-bar-block {
+	background-color: #6198E0;
+	padding: 10px;
+}
+
+.top-bar-block a {
+	color: #1D4591;
+}
+
+.top-bar-block a:hover {
+	font-weight: bold;
+}
+
+.top-bar-block .current {
+	height: 100%;
+	background-color: #9dbfec;
+}
+
+.body-block {
     margin: 0 auto;
     width: 85vw;
     height: 90vw;
@@ -6,74 +24,3 @@
     grid-template-rows: 50px 1fr 200px;
 }
 
-.top_bar_login {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 2fr;
-}
-
-.top_bar_nonlogin {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-}
-
-.logo{
-    height: 50px;
-}
-
-.logo img{
-    height : 100%;
-    object-fit:fill;
-    width: 100%;
-}
-
-.bar_link {
-    align-content: center;
-    background-color: skyblue;
-    border-left: 2px solid;
-    border-left-color: #77767680;
-    display: grid;  
-    justify-content: center;
-}
-
-/*.bar_link a {
-    display: block;
-    height: 100%;
-    left: 0;
-    position: relative;
-    top: 0;
-    width: 100%;
-}*/
-
-.bottom_bar{
-    border-top: 4px solid;
-    border-top-color: #919191;
-    display:grid;
-    grid-area: 3/1/4/2;
-    grid-template-rows: 1fr 4fr;
-}
-
-.message{
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-}
-
-.name{
-    align-content: center;
-    display: grid;
-    font-size: 20px;
-    justify-content: center;
-    text-decoration: underline;
-}
-
-.details {
-    display: grid;
-    font-size: 19px;
-    grid-template-columns: 1fr 1.5fr;
-
-}
-
-.detail_left{
-    align-content: center;
-    display: grid;
-    justify-content: center;
-}

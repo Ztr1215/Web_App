@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'WOF/base.html' %}
+{% load staticfiles %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/selecting.css">
-    <link rel="stylesheet" href="../css/all.css">
-    <link rel="stylesheet" href="../css/reset.css">
-    <title>Course Selecting</title>
-</head>
+{% block title_block %}
+    Index page!
+{% endblock %}
 
-<body>
+
+{% block body_block %}
+    <link rel="stylesheet" href="{% static 'css/selecting.css' %}">
+    <script type="text/javascript" src="{% static 'js/selecting.js' %}"></script>
     <div id="wrapper">
         <div id="side_bar">
             <div class="nameOfCoursesTitle">Name of Courses</div>
@@ -19,7 +16,7 @@
 
             </div>
             <div id="view_headerline">
-                <div id="img"><img src="../image/view_headline.png" alt="view_headerline" onclick="close_extend()">
+                <div id="img"><img src="{% static 'images/view_headline.png' %}" alt="view_headerline" onclick="close_extend()">
                 </div>
                 <div id="icon"></div>
             </div>
@@ -44,63 +41,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        // var arr = ["NOSE", "OOSE", "ADS2"];
-        var arr = ["NOSE", "OOSE", "ADS2","CS1F","CS1S"];
-        let length = arr.length;
-        let rows = length + 2;
-
-        
-        // let obj1 = { 'Selection': 'class1', 'From': '15/3/22', 'To': '26/7/22', 'Day': 'Thursday', 'Room': 'Room295-C', 'Instructor': 'David', 'Status': 'available' }
-        // let title_list = ['Selection', 'From', 'To', 'Day', 'Room', 'Instructor', 'Status']
-        // let list = {obj1}
-        // console.log(title_list[0]);
-        window.onload = function () {
-            let nameOfCourses = document.getElementById('nameOfCourses');
-            let icon = document.getElementById('icon')
-            let selectingTable = document.getElementById('selecting_part');
-            nameOfCourses.style.display = "grid";
-            nameOfCourses.style.gridTemplateRows = "repeat(" + length + ",50px)";
-            icon.style.display = "grid";
-            icon.style.gridTemplateRows = "repeat(" + length + ",50px)";
-            selectingTable.style.display = 'grid';
-            selectingTable.style.gridTemplateRows = "repeat(" + rows + ",1fr)";
-
-            for (var i = 0; i < length; i++) {
-                var courseName = document.createElement("div");
-                courseName.innerHTML = arr[i];
-                nameOfCourses.appendChild(courseName);
-                var iconName = document.createElement("div");
-                iconName.innerHTML = arr[i].charAt(0);
-                icon.appendChild(iconName);
-            };
-            // for (var i = 2; i < length + 2; i++) {
-            //     var line = document.createElement("div");
-            //     line.id = 'perline';
-            //     for (var j = 0; j < 7; j++) {
-            //         var coursesName = document.createElement("div");
-            //         coursesName.innerHTML = list.obj1.title_list[j];
-            //         selectingTable.appendChild(coursesName);
-            //     }
-            // }
-
-        }
-        let isClose = true;
-        var obj = document.getElementById('side_bar');
-        var table = document.getElementById('selecting_part')
-        function close_extend() {
-            if (isClose) {
-                obj.style.animationName = 'side_bar_extend'
-                table.style.animationName = 'small'
-                isClose = false;
-            } else {
-                obj.style.animationName = 'side_bar_close'
-                table.style.animationName = 'large'
-                isClose = true;
-            }
-        }
-    </script>
-</body>
-
-</html>
+{% endblock %}

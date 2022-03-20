@@ -1,4 +1,4 @@
-.body_block { 
+.body-block { 
 	text-align: center;
 }
 
@@ -6,13 +6,25 @@
 	background-color: #e3e3e3;
 	display: inline-block;
 	margin-top: 3vw;
-	padding-bottom: 2vw;
-	padding-top: 2vw;
+	padding-bottom: 1vw;
+	padding-top: 1vw;
 	width: 30vw;
 }
 
 #authentication_input_div p {
 	margin-bottom: 12px;
+	margin-top: 2px;
+}
+
+#authentication_input_div #register_text {
+	font-family: "Poppins", sans-serif;
+	margin-bottom: 5px;
+	margin-top: 2px;
+}
+
+#authentication_input_div #login_text {
+	font-family: "Poppins", sans-serif;
+	margin-bottom: 5px;
 	margin-top: 2px;
 }
 
@@ -22,10 +34,10 @@
 }
 
 .errorlist, { 
-	font-family: "Roboto", "Open Sans", monospace;
+	font-family: "Poppins", sans-serif;
 }
 
-#authentication_input_div input[type=text], input[type=password], input[type=number] {
+#authentication_input_div input[type=text], input[type=password], input[type=number], select {
 	box-sizing: border-box;
 	padding: 12px 20px;
 	width: 80%;
@@ -35,8 +47,12 @@
 	background-color: #ec2727;
 	border-color: #f26e6e;
 	box-sizing: border-box;
-	font-family: "Roboto", "Open Sans", monospace;
+	font-family: "Poppins", sans-serif;
 	font-weight: bolder;
 	padding: 12px;
 	width: 50%;
+}
+
+#authentication_input_div input[type=submit]:hover {
+	background-color: #f48080;
 }
