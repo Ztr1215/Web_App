@@ -5,13 +5,13 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 class University(models.Model):
-    name = models.CharField(max_length = 80,unique = False)
+    name = models.CharField(max_length = 80,unique = True)
     location = models.CharField(max_length = 80, unique = False)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(University, self).save(*args, **kwargs)    
-    
+     
     class Meta:
         verbose_name_plural = 'Universites'
         
@@ -33,12 +33,12 @@ class StudentUser(models.Model):
 
 
 class Task(models.Model):
-    name=models.CharField(max_length=40, unique = True)
-    completed= models.BooleanField(default=False);
-    dueDate= models.DateTimeField(
-        verbose_name=("Creation date"), auto_now_add=True, null=True
+    name = models.CharField(max_length=40, unique = True)
+    completed = models.BooleanField(default=False);
+    dueDate = models.DateField(
+        verbose_name = ("Creation date"), auto_now_add=False, null=True
     )
-    timePlanned= models.TimeField(auto_now=True, auto_now_add=False);
+    timePlanned = models.TimeField(auto_now=False, auto_now_add=False);
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
