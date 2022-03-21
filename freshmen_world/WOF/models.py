@@ -35,10 +35,10 @@ class StudentUser(models.Model):
 class Task(models.Model):
     name = models.CharField(max_length=40, unique = True)
     completed = models.BooleanField(default=False);
-    dueDate = models.DateField(
-        verbose_name = ("Creation date"), auto_now_add=False, null=True
-    )
-    timePlanned = models.TimeField(auto_now=False, auto_now_add=False);
+    dueDate = models.DateField(verbose_name = ("Creation date"), auto_now_add=False, null=True)
+    timePlanned = models.TimeField(auto_now=False, auto_now_add=False)
+    studentUser = models.ForeignKey(StudentUser, on_delete=models.CASCADE, null=False)
+
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -53,10 +53,7 @@ class Task(models.Model):
 
 
 class AdminUser(models.Model):
-    # firstName = models.CharField(max_length = 40,unique = False)
-    # secondName = models.CharField(max_length = 40,unique = False)
-    # password = models.CharField(max_length = 20,unique = False)
-    # email = models.CharField(max_length = 60,unique = True)
+
     university = models.CharField(max_length = 80,unique = False)
 
     def save(self, *args, **kwargs):

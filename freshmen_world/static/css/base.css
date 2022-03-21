@@ -17,10 +17,16 @@
 }
 
 .body-block {
+    min-height: 100%;
     margin: 0 auto;
     width: 85vw;
-    height: 90vw;
-    display: grid;
-    grid-template-rows: 50px 1fr 200px;
+}
+
+.footer-bottom-page {
+	background-color: #0c213c;
+	bottom: 0;
+	height: 100px;
+	position: absolute;
+	width: 100%;
 }
 

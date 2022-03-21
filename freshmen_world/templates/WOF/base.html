@@ -21,41 +21,27 @@
     </head>
 
     <body>
-        <div>
-            {% block top_bar_block %}
-                <ul class="nav justify-content-center top-bar-block">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'WOF:index' %}">Homepage</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'WOF:task_manager' %}">Task Manager</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'WOF:selector' %}">Course Selector</a></li>
-                {% if user.is_authenticated %}    
-                    <li class="nav-item"><a class="nav-link" href="{% url 'WOF:logout' %}">Logout</a></li>
-                {% else %}
-                    <li class="nav-item"><a class="nav-link" href="{% url 'WOF:user_login' %}">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'WOF:user_register' %}">Register</a></li>
-                {% endif %}
-                </ul>
-            {% endblock %}
+        {% block top_bar_block %}
+            <ul class="nav justify-content-center top-bar-block">
+                <li class="nav-item"><a class="nav-link" href="{% url 'WOF:index' %}">Homepage</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'WOF:task_manager' %}">Task Manager</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'WOF:selector' %}">Course Selector</a></li>
+            {% if user.is_authenticated %}    
+                <li class="nav-item"><a class="nav-link" href="{% url 'WOF:logout' %}">Logout</a></li>
+            {% else %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'WOF:user_login' %}">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'WOF:user_register' %}">Register</a></li>
+            {% endif %}
+            </ul>
+        {% endblock %}
             <div class="body-block">
                 {% block body_block %}
                 {% endblock %}
             </div>
-            {% block bottom_bar_block %}
-            <div class="bottom-bar">
-                <hr id="bottom-bar-line">
-                <div class="message">
-                    <div class="name">Message</div>
-                </div>
-                <div class="details">
-                    <div class="detail-left">
-                        <ul>
-                            <li>About us</li>
-                            <li>Terms</li>
-                            <li>Help Documents</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% block bottom_bar_block %}
+            <footer class="footer-bottom-page">
+                <p>Content goes here</p>
+            </footer>
         {% endblock %}  
     </body>
 </html>

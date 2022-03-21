@@ -4,9 +4,83 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE',
                         'freshmen_world.settings')
 django.setup()
 
-from WOF.models import University, Task, Course
+
+# All models imported for creating fake content
+from WOF.models import University, Task, Course, StudentUser
+from django.contrib.auth.models import User
 
 def populate():
+    # All dummy tasks and users in order to populate all aspects
+
+    maclaurin_task = [
+        {'name':'Theorise Power Series',
+         'completed': True,
+         'dueDate': datetime.datetime(2022, 10, 24), # 24/10/2022, 
+         'timePlanned': datetime.time(18, 30),
+         },
+    ]
+
+    matty_task = [
+        {'name':'Walk the dog',
+         'completed': False,
+         'dueDate': datetime.datetime(2022, 6, 9), # 09/06/2022, 
+         'timePlanned': datetime.time(3, 30),
+         },
+    ]
+
+    ben_task = [
+        {'name':'Submit English folio',
+         'completed': False,
+         'dueDate': datetime.datetime(2022, 5, 17), # 17/05/2022, 
+         'timePlanned': datetime.time(9, 30),
+         },
+    ]
+
+    bobbyd_task = [
+        {'name':'Make more music',
+         'completed': False,
+         'dueDate': datetime.datetime(2022, 8, 22), # 22/08/2022, 
+         'timePlanned': datetime.time(23, 30),
+         },
+    ]
+
+    glasgow_users = [
+        {'username': "BobbyD",
+        'firstName': "Bob",
+        'secondName': "Dylan",
+        'password': "HeavensDoorKnocker",
+        'degree': "Music History",
+        'level': 3,
+        'tasks': bobbyd_task
+        },
+        {'username': "MaclaurinMan",
+        'firstName': "Colin",
+        'secondName': "Maclaurin",
+        'password': "TaylorSeriesSucks",
+        'degree': "Mathematics",
+        'level': 4,
+        'tasks': maclaurin_task
+        },
+    ]
+
+    stboswells_users = [
+        {'username': "Matty",
+        'firstName': "Matthew",
+        'secondName': "Jackson",
+        'password': "MatthewCantWalk",
+        'degree': "Helping old people",
+        'level': 3,
+        'tasks': matty_task
+        },
+        {'username': "BigBen",
+        'firstName': "Ben",
+        'secondName': "Jackson",
+        'password': "BenDoesNotClean",
+        'degree': "Dishwasher Cleaning",
+        'level': 1,
+        'tasks': ben_task
+        },
+    ]
 
     glasgow_courses = [
         {'name':"Computer Systems",
@@ -45,8 +119,10 @@ def populate():
     ]
 
     university_information = {
-        "University of Glasgow" : {'courses' : glasgow_courses, 'location' : "Glasgow"},
-        "St Boswells University" : {'courses' : stboswells_courses, 'location' : "St Boswells"},
+        "University of Glasgow" : {'courses' : glasgow_courses, 'users': glasgow_users, 
+                                    'location' : "Glasgow"},
+        "St Boswells University" : {'courses' : stboswells_courses, 'users': stboswells_users, 
+                                    'location' : "St Boswells"},
     }
 
 
@@ -70,33 +146,49 @@ def populate():
             add_course(created_uni, course['name'], course['level'], 
                         course['credits'], course['courseConvener'], 
                         course['courseNumber'])
-        
-    for task in task_information:
-        add_task(task['name'], task['completed'], task['dueDate'], task['timePlanned'])
+        for user in university_data['users']:
+            # Need returned value as to assign values
+            created_user = add_user(created_uni, user['username'], user['firstName'], 
+                            user['secondName'], user['password'], 
+                            user['degree'], user['level'])
+            for task in user['tasks']:
+            # Assign each task to specific user
+                add_task(created_user, task['name'], task['completed'], task['dueDate'], task['timePlanned'])
 
     for uni in University.objects.all():
         for course in Course.objects.filter(university=uni):
-            print(f"- {uni} : {course}")
+            print(f"- {uni} : Course : {course}")
+        for student in StudentUser.objects.filter(university=uni):
+            print(f"- {uni} : Student :  {student}")
+            for task in Task.objects.filter(studentUser=student):
+                print(f"\t- {student} : Task : {task}")
 
-    for task in Task.objects.all():
-        print(f"- {task}")
     
     
 def add_university(name : str, location : str):
-    u = University.objects.get_or_create(name = name, location = location)[0]
-    u.save()
-    return u
+    created_university = University.objects.get_or_create(name = name, location = location)[0]
+    created_university.save()
+    return created_university
 
-def add_course(university : str, name : str, level : int, credits : int, courseConvener : str, courseNumber : str):
-    c = Course.objects.get_or_create(university = university, name = name, level = level, credits = credits,
+def add_course(university, name : str, level : int, credits : int, courseConvener : str, courseNumber : str):
+    created_course = Course.objects.get_or_create(university = university, name = name, level = level, credits = credits,
     courseConvener = courseConvener, courseNumber = courseNumber)[0]
-    c.save()
-    return c
+    created_course.save()
+    return created_course
 
-def add_task(name : str, completed : str, dueDate, timePlanned):
-    t = Task.objects.get_or_create(name = name, completed = completed, dueDate = dueDate, timePlanned = timePlanned)[0]
-    t.save()
-    return t
+def add_task(studentUser, name : str, completed : str, dueDate, timePlanned):
+    created_task = Task.objects.get_or_create(studentUser = studentUser, name = name, completed = completed, dueDate = dueDate, timePlanned = timePlanned)[0]
+    created_task.save()
+    return created_task
+
+def add_user(university, username : str, firstName : str, secondName : str,
+                password : str, degree : str, level : int):
+    # Need to make users first in order to assign to studentUser model
+    created_user = User.objects.get_or_create(username = username, password = password, first_name = firstName, last_name = secondName)[0]
+    created_user.save()
+    created_student_user = StudentUser.objects.get_or_create(user = created_user, university = university, degree = degree, level = level)[0]
+    created_student_user.save()
+    return created_student_user
    
 if __name__ == '__main__':
     print('Starting population script...')
