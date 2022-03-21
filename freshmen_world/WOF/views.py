@@ -14,6 +14,9 @@ def index(request):
 def base(request):
 	return render(request, 'WOF/base.html', context={})
 
+def team_members(request):
+	return render(request, 'WOF/team_members.html', context={})
+
 def user_login(request):
 	if request.method == 'POST':
 		username = request.POST.get('username')

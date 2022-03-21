@@ -1,79 +1,63 @@
-.body_block{
+.top-bar-block {
+	background-color: #6198E0;
+	padding: 10px;
+}
+
+.top-bar-block a {
+	color: #1D4591;
+}
+
+.top-bar-block a:hover {
+	font-weight: bold;
+}
+
+.top-bar-block .current {
+	height: 100%;
+	background-color: #9DBFEC;
+}
+
+.body-block {
+    min-height: 100%;
     margin: 0 auto;
     width: 85vw;
-    height: 90vw;
-    display: grid;
-    grid-template-rows: 50px 1fr 200px;
 }
 
-.top_bar_login {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 2fr;
+.footer-bottom-page {
+	background-color: #383942;
+	bottom: 0;
+	height: 100px;
+	position: absolute;
+	width: 100%;
 }
 
-.top_bar_nonlogin {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+.footer-bottom-page p, a {
+	font-size: 20px;
+	color: #7C7C83;
+	margin-bottom: 0;
 }
 
-.logo{
-    height: 50px;
+.footer-bottom-page a {
+	color: #6A6B71;
 }
 
-.logo img{
-    height : 100%;
-    object-fit:fill;
-    width: 100%;
+.footer-bottom-page .footer-container {
+	display: grid;
+	grid-template-columns: auto auto;
+	height: 100%;
+	padding-top: 5px;
 }
 
-.bar_link {
-    align-content: center;
-    background-color: skyblue;
-    border-left: 2px solid;
-    border-left-color: #77767680;
-    display: grid;  
-    justify-content: center;
+.footer-bottom-page .footer-item {
+	border: 1px solid;
 }
 
-/*.bar_link a {
-    display: block;
-    height: 100%;
-    left: 0;
-    position: relative;
-    top: 0;
-    width: 100%;
-}*/
-
-.bottom_bar{
-    border-top: 4px solid;
-    border-top-color: #919191;
-    display:grid;
-    grid-area: 3/1/4/2;
-    grid-template-rows: 1fr 4fr;
+.footer-bottom-page .left {
+	text-align: left;
+	padding-left: 20px;
 }
 
-.message{
-    display: grid;
-    grid-template-columns: 1fr 3fr;
+.footer-bottom-page .right {
+	text-align: right;
+	padding-right: 20px;
 }
 
-.name{
-    align-content: center;
-    display: grid;
-    font-size: 20px;
-    justify-content: center;
-    text-decoration: underline;
-}
-
-.details {
-    display: grid;
-    font-size: 19px;
-    grid-template-columns: 1fr 1.5fr;
-
-}
-
-.detail_left{
-    align-content: center;
-    display: grid;
-    justify-content: center;
-}

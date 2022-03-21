@@ -38,7 +38,6 @@ class StudentUserProfileForm(forms.ModelForm):
 		fields = ('university', 'degree', 'level', )
 
 		widgets = {
-			'university' : forms.TextInput(attrs={'placeholder' : 'University', }),
 			'degree' : forms.TextInput(attrs={'placeholder' : 'Degree name', }),
 			'level' : forms.NumberInput(attrs={})
 		}
@@ -52,6 +51,6 @@ class StudentUserProfileForm(forms.ModelForm):
 
 	def __init__(self, *args, **kwargs):
 		super(StudentUserProfileForm, self).__init__(*args, **kwargs)
-		self.fields['university'].required = False
+		self.fields['university'].required = True
 		self.fields['degree'].required = False
 		self.fields['level'].required = False

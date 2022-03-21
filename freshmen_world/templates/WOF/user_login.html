@@ -6,13 +6,14 @@
 {% endblock %}
 
 {% block body_block %}
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/authentication.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
     <form id="login_form" method="post" action="{% url 'WOF:user_login' %}">
         <div id="authentication_input_div">
-            <p class="p_login"><input type="text" name="username" value="" size="40" /></p> <br />
-            <p class="p_login"><input type="password" name="password" value="" size="20" ></p><br />
+            {% csrf_token %}
+            <p id="login_text">Login to your account!</p>
+            <p class="p_login"><input type="text" name="username" value="" size="40" placeholder="Username" /></p> <br />
+            <p class="p_login"><input type="password" name="password" value="" size="20" placeholder="Password" /></p><br />
             <p class="p_login"><input type="submit" value="Submit" /></p>
         </div>
     </form>
