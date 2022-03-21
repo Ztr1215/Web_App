@@ -40,7 +40,18 @@
             </div>
         {% block bottom_bar_block %}
             <footer class="footer-bottom-page">
-                <p>Content goes here</p>
+                <div class="footer-container">
+                    <div class="footer-item left">
+                        <!-- Contact us -->
+                        <p><a href="mailto:wad2lab12d@gmail.com">Contact us</a></p>
+                        <p><a href="{% url 'WOF:team' %}">Meet the team</a></p>
+                        <!-- Meet the team -->
+                    </div>
+                    <div class="footer-item right">
+                        <p>Opposing side</p>
+                        <!-- Some logo action here -->
+                    </div>
+                </div>
             </footer>
         {% endblock %}  
     </body>

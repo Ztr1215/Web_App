@@ -13,7 +13,7 @@
 
 .top-bar-block .current {
 	height: 100%;
-	background-color: #9dbfec;
+	background-color: #9DBFEC;
 }
 
 .body-block {
@@ -23,10 +23,41 @@
 }
 
 .footer-bottom-page {
-	background-color: #0c213c;
+	background-color: #383942;
 	bottom: 0;
 	height: 100px;
 	position: absolute;
 	width: 100%;
+}
+
+.footer-bottom-page p, a {
+	font-size: 20px;
+	color: #7C7C83;
+	margin-bottom: 0;
+}
+
+.footer-bottom-page a {
+	color: #6A6B71;
+}
+
+.footer-bottom-page .footer-container {
+	display: grid;
+	grid-template-columns: auto auto;
+	height: 100%;
+	padding-top: 5px;
+}
+
+.footer-bottom-page .footer-item {
+	border: 1px solid;
+}
+
+.footer-bottom-page .left {
+	text-align: left;
+	padding-left: 20px;
+}
+
+.footer-bottom-page .right {
+	text-align: right;
+	padding-right: 20px;
 }
 

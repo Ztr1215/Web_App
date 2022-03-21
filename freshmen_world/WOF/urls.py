@@ -11,4 +11,5 @@ urlpatterns = [
 	path('course_selector/', views.selector, name='selector'),
 	path('taskmanager/', views.task_manager, name='task_manager'),
 	path('logout/', views.user_logout, name='logout'),
+	path('team/', views.team_members, name='team'),
 ]
