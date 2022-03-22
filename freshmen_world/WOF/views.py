@@ -4,6 +4,8 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from WOF.forms import StudentUserForm, StudentUserProfileForm
+from WOF.forms import StudentUserChangeForm, StudentUserChangeProfileForm
+from WOF.models import StudentUser
 
 
 def index(request):
@@ -16,6 +18,35 @@ def base(request):
 
 def team_members(request):
 	return render(request, 'WOF/team_members.html', context={})
+
+@login_required
+def profile(request):
+	updated = False
+	student_user = StudentUser.objects.filter(user=request.user)[0]
+	if request.method == "POST":
+		student_user_change_form = StudentUserChangeForm(request.POST, instance=request.user)
+		student_user_change_profile_form = StudentUserChangeProfileForm(request.POST, instance=student_user)
+
+		if student_user_change_form.is_valid() and student_user_change_profile_form.is_valid():
+			updated = True
+			
+			student_user = student_user_change_form.save()
+			student_user.set_password(student_user.password)
+			student_user.save()
+
+			student_user_profile = student_user_change_profile_form.save()
+			student_user_profile.user = student_user 
+			student_user_profile.save()
+
+			login(request, student_user)
+		else:
+			print(student_user_change_form.errors, student_user_change_profile_form.errors)
+	else:
+		student_user_change_form = StudentUserChangeForm(instance=request.user)
+		student_user_change_profile_form = StudentUserChangeProfileForm(instance=student_user)
+	return render(request, 'WOF/account.html', context={'student_user_change_form' : student_user_change_form,
+														'student_user_change_profile_form' : student_user_change_profile_form,
+														'updated' : updated})
 
 def user_login(request):
 	if request.method == 'POST':
@@ -55,8 +86,9 @@ def user_register(request):
 			profile.save()
 
 			registered = True
+			login(request, student_user)
 		else:
-			print(student_user_form.errors)
+			print(student_user_form.errors, student_user_profile_form.errors)
 	else:
 		student_user_form = StudentUserForm()
 		student_user_profile_form = StudentUserProfileForm()

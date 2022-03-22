@@ -19,6 +19,7 @@
 .body-block {
     min-height: 100%;
     margin: 0 auto;
+    height: 100%;
     width: 85vw;
 }
 
@@ -26,7 +27,7 @@
 	background-color: #383942;
 	bottom: 0;
 	height: 100px;
-	position: absolute;
+	position: fixed;
 	width: 100%;
 }
 

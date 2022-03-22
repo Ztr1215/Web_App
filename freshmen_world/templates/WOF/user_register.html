@@ -11,10 +11,11 @@
 	{% if registered %}
 		<p>Thank you for joining us<br />
 		<a href="{% url 'WOF:index' %}">Return to the homepage</a></p><br />
+		
 	{% else %}
 		<form id="student_user_form" method="post" action="{% url 'WOF:user_register' %}" enctype="multipart/form-data">
-			<div id="authentication_input_div">
-				<p id="register_text">Register at Freshmen World!</p>
+			<div class="authentication-input-div">
+				<p id="register-text">Register at Freshmen World!</p>
 				{% csrf_token %}
 				{{ student_user_form.as_p }}
 				{{ student_user_profile_form.as_p }}
