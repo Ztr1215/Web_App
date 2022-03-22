@@ -1,9 +1,10 @@
+
 .body-block { 
 	text-align: center;
 }
 
-#authentication_input_div {
-	background-color: #e3e3e3;
+.authentication-input-div {
+	background-color: #E3E3E3;
 	display: inline-block;
 	margin-top: 3vw;
 	padding-bottom: 1vw;
@@ -11,24 +12,24 @@
 	width: 30vw;
 }
 
-#authentication_input_div p {
+.authentication-input-div p {
 	margin-bottom: 12px;
 	margin-top: 2px;
 }
 
-#authentication_input_div #register_text {
+.authentication-input-div #register-text {
 	font-family: "Poppins", sans-serif;
 	margin-bottom: 5px;
 	margin-top: 2px;
 }
 
-#authentication_input_div #login_text {
+.authentication-input-div #login-text {
 	font-family: "Poppins", sans-serif;
 	margin-bottom: 5px;
 	margin-top: 2px;
 }
 
-#authentication_input_div .p_login {
+.authentication-input-div .p-login {
 	margin-bottom: 0px;
 	margin-top: 0px;
 }
@@ -37,15 +38,15 @@
 	font-family: "Poppins", sans-serif;
 }
 
-#authentication_input_div input[type=text], input[type=password], input[type=number], select {
+.authentication-input-div input[type=text], input[type=password], input[type=number], select {
 	box-sizing: border-box;
 	padding: 12px 20px;
 	width: 80%;
 }
 
-#authentication_input_div input[type=submit] {
-	background-color: #ec2727;
-	border-color: #f26e6e;
+.authentication-input-div input[type=submit] {
+	background-color: #FC5185;
+	border-color: #ffb3c9;
 	box-sizing: border-box;
 	font-family: "Poppins", sans-serif;
 	font-weight: bolder;
@@ -53,6 +54,6 @@
 	width: 50%;
 }
 
-#authentication_input_div input[type=submit]:hover {
-	background-color: #f48080;
+.authentication-input-div input[type=submit]:hover {
+	background-color: #ffbdd1;
 }

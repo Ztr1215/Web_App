@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="{% static 'css/authentication.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
     <form id="login_form" method="post" action="{% url 'WOF:user_login' %}">
-        <div id="authentication_input_div">
+        <div class="authentication-input-div">
             {% csrf_token %}
-            <p id="login_text">Login to your account!</p>
-            <p class="p_login"><input type="text" name="username" value="" size="40" placeholder="Username" /></p> <br />
-            <p class="p_login"><input type="password" name="password" value="" size="20" placeholder="Password" /></p><br />
-            <p class="p_login"><input type="submit" value="Submit" /></p>
+            <p id="login-text">Login to your account!</p>
+            <p class="p-login"><input type="text" name="username" value="" size="40" placeholder="Username" /></p> <br />
+            <p class="p-login"><input type="password" name="password" value="" size="20" placeholder="Password" /></p><br />
+            <p class="p-login"><input type="submit" value="Submit" /></p>
         </div>
     </form>
 {% endblock %}

@@ -185,6 +185,7 @@ def add_user(university, username : str, firstName : str, secondName : str,
                 password : str, degree : str, level : int):
     # Need to make users first in order to assign to studentUser model
     created_user = User.objects.get_or_create(username = username, password = password, first_name = firstName, last_name = secondName)[0]
+    created_user.set_password(password)
     created_user.save()
     created_student_user = StudentUser.objects.get_or_create(user = created_user, university = university, degree = degree, level = level)[0]
     created_student_user.save()

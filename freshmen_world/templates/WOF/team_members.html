@@ -7,5 +7,16 @@
 
 
 {% block body_block %}
-    <h1>You at the team page</h1>
+    <link rel="stylesheet" href="{% static 'css/team_members.css' %}">
+    <div class="boxes">
+        <div class="row">
+            <div class="box"><img src="{% static 'images/sam_image.png' %}"></div>
+            <div class="box"><img src="{% static 'images/tianrun_image.png' %}"></div>
+            <div class="box"><img src="{% static 'images/zhiang_image.png' %}"></div>
+        </div>
+        <div class="row">
+            <div class="box"><img src="{% static 'images/laurie_image.png' %}"></div>
+            <div class="box"><img src="{% static 'images/robert_image.png' %}"></div>
+        </div>
+    </div>
 {% endblock %}

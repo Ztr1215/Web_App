@@ -1,0 +1,30 @@
+.boxes {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.row {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  height: 400px;
+  justify-content: center;
+  width: 100%;
+}
+
+.box {
+  background-color: red;
+  height: 300px;
+  width: 400px;
+}
+
+.box img {
+	height: 100%;
+	object-fit: cover;
+	overflow: hidden;
+	width: 100%;
+}
