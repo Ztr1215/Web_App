@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from WOF.forms import StudentUserForm, StudentUserProfileForm
 from WOF.forms import StudentUserChangeForm, StudentUserChangeProfileForm
-from WOF.models import StudentUser
+from WOF.models import StudentUser, Course
 
 
 def index(request):
@@ -105,6 +105,16 @@ def selector(request):
 	context_dict = {}
 	response = render(request, 'WOF/selecting.html', context=context_dict)
 	return response
+
+def show_course(request, course_name_slug):
+	context_dict = {}
+	try:
+		course = Course.objects.filter(slug=course_name_slug)[0]
+		context_dict['course'] = course
+	except Course.DoesNotExist:
+		context_dict['course'] = None
+	return render(request, 'WOF/course_base.html', context=context_dict)
+
 
 def task_manager(request):
 	context_dict = {}

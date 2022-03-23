@@ -1,7 +1,6 @@
 {% extends 'WOF/base.html' %}
 {% load staticfiles %}
 
-<!-- <div class="box"><img src="{% static 'images/sam_image.png' %}"></div> -->
 
 {% block title_block %}
     Team Members page!
@@ -9,7 +8,7 @@
 
 
 {% block body_block %}
-    <link rel="stylesheet" href="{% static 'css/team_members.css' %}">
+    <link rel="stylesheet" href="{% static 'css/flexgrid.css' %}">
     <div class="flex-grid">
         <div class="col flex-grid-space flex-thirds"><img src="{% static 'images/sam_image.png' %}"></div>
         <div class="col flex-grid-space flex-thirds"><img src="{% static 'images/tianrun_image.png' %}"></div>

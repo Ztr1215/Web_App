@@ -1,0 +1,32 @@
+{% extends 'WOF/base.html' %}
+{% load staticfiles  %}
+
+{% block title_block %}
+	{{ course.name }}
+{% endblock %}
+
+{% block body_block %}
+	<script type="text/javascript" src="{% static 'js/course_info.js' %}"></script>
+	<link rel="stylesheet" href="{% static 'css/course_base.css' %}">
+	<link rel="stylesheet" href="{% static 'css/flexgrid.css' %}">
+	<div class="flex-grid course-base">
+		<div class="col flex-grid-space flex-whole course-flex-space course-flex-background" id="course-name">
+			<p id="course-name-content">{{ course.name }}</p>
+		</div>
+	</div>
+	<div class="flex-grid course-base ">
+		<div class="col flex-grid-space flex-thirds course-flex-background" id="course-description">
+			<p id="xml-content">Get the information from the database</p><br />
+			<button type="button" id="content-button">See content</button>
+		</div>
+		<div class="col flex-grid-space flex-thirds course-flex-background" id="course-info">
+			<p id="course-credits"> Credits: {{ course.credits }} </p>
+			<p id="course-level"> Course Level: {{ course.level }} </p>
+		</div>
+		<div class="col flex-grid-space flex-thirds course-flex-background" id="course-head">
+			{{ course.courseConvener }}
+			{{ course.courseNumber }}
+		</div>
+	</div>
+
+{% endblock %}
