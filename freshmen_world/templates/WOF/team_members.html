@@ -1,22 +1,21 @@
 {% extends 'WOF/base.html' %}
 {% load staticfiles %}
 
+
 {% block title_block %}
     Team Members page!
 {% endblock %}
 
 
 {% block body_block %}
-    <link rel="stylesheet" href="{% static 'css/team_members.css' %}">
-    <div class="boxes">
-        <div class="row">
-            <div class="box"><img src="{% static 'images/sam_image.png' %}"></div>
-            <div class="box"><img src="{% static 'images/tianrun_image.png' %}"></div>
-            <div class="box"><img src="{% static 'images/zhiang_image.png' %}"></div>
-        </div>
-        <div class="row">
-            <div class="box"><img src="{% static 'images/laurie_image.png' %}"></div>
-            <div class="box"><img src="{% static 'images/robert_image.png' %}"></div>
-        </div>
+    <link rel="stylesheet" href="{% static 'css/flexgrid.css' %}">
+    <div class="flex-grid">
+        <div class="col flex-grid-space flex-thirds"><img src="{% static 'images/sam_image.png' %}"></div>
+        <div class="col flex-grid-space flex-thirds"><img src="{% static 'images/tianrun_image.png' %}"></div>
+        <div class="col flex-grid-space flex-thirds"><img src="{% static 'images/zhiang_image.png' %}"></div>
+    </div>
+    <div class="flex-grid">
+        <div class="col flex-grid-space flex-half"><img src="{% static 'images/robert_image.png' %}"></div>
+        <div class="col flex-grid-space flex-half"><img src="{% static 'images/laurie_image.png' %}"></div>
     </div>
 {% endblock %}

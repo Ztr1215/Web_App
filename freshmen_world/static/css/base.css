@@ -16,6 +16,47 @@
 	background-color: #9DBFEC;
 }
 
+.top-bar-block .dropdown-menu {
+  float: left;
+  overflow: hidden;
+}
+
+/* Dropdown button */
+.top-bar-block .dropdown-courses .button-dropdown {
+	color: #1D4591;
+  border: none;
+  outline: none;
+  background-color: inherit;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+}
+
+.top-bar-block .dropdown-courses:hover .button-dropdown {
+	font-weight: bold;
+}
+
+.top-bar-block .university-content-container {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  z-index: 1;
+}
+
+.top-bar-block .university-content-container a {
+  float: none;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.top-bar-block .dropdown-courses:hover .university-content-container {
+  display: block;
+  border: 0.5px solid black;
+}
+
+
 .body-block {
     min-height: 100%;
     margin: 0 auto;
@@ -23,18 +64,25 @@
     width: 85vw;
 }
 
+.clear {
+	clear: both;
+	height: 70px;
+}
+
 .footer-bottom-page {
 	background-color: #383942;
 	bottom: 0;
-	height: 100px;
+	display: block;
+	font-size: 1em;
+	height: 60px;
 	position: fixed;
 	width: 100%;
 }
 
 .footer-bottom-page p, a {
-	font-size: 20px;
 	color: #7C7C83;
 	margin-bottom: 0;
+	position: relative;
 }
 
 .footer-bottom-page a {

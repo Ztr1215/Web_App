@@ -7,6 +7,7 @@ from django.dispatch import receiver
 class University(models.Model):
     name = models.CharField(max_length = 80,unique = True)
     location = models.CharField(max_length = 80, unique = False)
+    slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -38,6 +39,7 @@ class Task(models.Model):
     dueDate = models.DateField(verbose_name = ("Creation date"), auto_now_add=False, null=True)
     timePlanned = models.TimeField(auto_now=False, auto_now_add=False)
     studentUser = models.ForeignKey(StudentUser, on_delete=models.CASCADE, null=False)
+    slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -73,6 +75,7 @@ class Course(models.Model):
     courseConvener = models.CharField(max_length = 90, unique = False)
     courseNumber = models.CharField(max_length = 30, unique = False)
     university = models.ForeignKey(University, on_delete=models.CASCADE , null=True)
+    slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)

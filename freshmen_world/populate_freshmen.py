@@ -3,8 +3,7 @@ import os, django, datetime
 os.environ.setdefault('DJANGO_SETTINGS_MODULE',
                         'freshmen_world.settings')
 django.setup()
-
-
+    
 # All models imported for creating fake content
 from WOF.models import University, Task, Course, StudentUser
 from django.contrib.auth.models import User
@@ -30,7 +29,7 @@ def populate():
 
     ben_task = [
         {'name':'Submit English folio',
-         'completed': False,
+         'completed': True,
          'dueDate': datetime.datetime(2022, 5, 17), # 17/05/2022, 
          'timePlanned': datetime.time(9, 30),
          },
@@ -124,21 +123,6 @@ def populate():
         "St Boswells University" : {'courses' : stboswells_courses, 'users': stboswells_users, 
                                     'location' : "St Boswells"},
     }
-
-
-    # Task data
-    task_information = [
-        {'name':'Lab exam 1S',
-         'completed': False,
-         'dueDate': datetime.datetime(2022, 10, 24), # 24/10/2022, 
-         'timePlanned': datetime.time(18, 30),
-         },
-         {'name':'Lab exam 1P',
-         'completed': True,
-         'dueDate': datetime.datetime(2022, 12, 10), # 10/12/2022,
-         'timePlanned': datetime.time(6, 30),
-         },
-    ]
     
     for university_name, university_data in university_information.items():
         created_uni = add_university(university_name, university_data['location'])
