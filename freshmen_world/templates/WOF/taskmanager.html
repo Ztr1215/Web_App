@@ -2,20 +2,11 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Task Manager
+Task Manager
 {% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/taskmanager.css">
-    <link rel="stylesheet" href="../css/all.css">
-    <link rel="stylesheet" href="../css/reset.css">
-    <title>Task Manager</title>
-</head>
-
 {% block body_block %}
+<div class="body_block" id="body_block">
     <link rel="stylesheet" href="{% static 'css/all.css' %}">
     <link rel="stylesheet" href="{% static 'css/taskmanager.css' %}">
     <div class="first_part">
@@ -250,85 +241,90 @@
 
         </div>
     </div>
+</div>
 
 
-    <script type="text/javascript">
-        let date = new Date();
-        let currentMonth = date.getMonth();
-        update();
-        function update() {
-            let year = date.getFullYear();
-            let month = date.getMonth();
-            let day = date.getDate();
-            let firstDay = new Date(year, month, 0).getDay();
-            let monthLength = new Date(year, month + 1, 0).getDate();
-            console.log(monthLength);
+<script type="text/javascript">
+    let date = new Date();
+    let currentMonth = date.getMonth();
+    update();
+    function update() {
+        let year = date.getFullYear();
+        let month = date.getMonth();
+        let day = date.getDate();
+        let firstDay = new Date(year, month, 0).getDay();
+        let monthLength = new Date(year, month + 1, 0).getDate();
+        console.log(monthLength);
 
 
-            let array = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        let array = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-            document.getElementById("year").innerHTML = year;
-            document.getElementById("month").innerHTML = array[month];
+        document.getElementById("year").innerHTML = year;
+        document.getElementById("month").innerHTML = array[month];
 
-            let j = firstDay;
-            let z = 1;
-            for (let i = 1; i <= 42; i++) {
-                document.getElementById(i).innerHTML = "";
+        let j = firstDay;
+        let z = 1;
+        for (let i = 1; i <= 42; i++) {
+            document.getElementById(i).innerHTML = "";
+        }
+        for (let i = 1; i <= monthLength; i++) {
+            document.getElementById(j + i).innerHTML = z;
+            if (document.getElementById(j + i).innerHTML == day && document.getElementById("month").innerHTML == array[currentMonth]) {
+                document.getElementById(j + i).style.color = "red";
+            } else {
+                document.getElementById(j + i).style.color = "grey";
             }
-            for (let i = 1; i <= monthLength; i++) {
-                document.getElementById(j + i).innerHTML = z;
-                if (document.getElementById(j + i).innerHTML == day && document.getElementById("month").innerHTML == array[currentMonth]) {
-                    document.getElementById(j + i).style.color = "red";
-                } else {
-                    document.getElementById(j + i).style.color = "black";
-                }
-                z++;
-            }
-
+            z++;
         }
 
-        document.getElementById("last_month").onclick = function () {
-            date.setMonth(date.getMonth() - 1);
-            update();
-        };
-        document.getElementById("next_month").onclick = function () {
-            date.setMonth(date.getMonth() + 1);
-            update();
-        };
-    </script>
+    }
+
+    document.getElementById("last_month").onclick = function () {
+        date.setMonth(date.getMonth() - 1);
+        update();
+    };
+    document.getElementById("next_month").onclick = function () {
+        date.setMonth(date.getMonth() + 1);
+        update();
+    };
+</script>
 
 
-    <script type="text/javascript">
-        let array = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        date = new Date();
-        addMonthOptions();
-        function addMonthOptions() {
-            var option_month = document.getElementById("monthTime");
-            for (var i = 0; i < 12; i++) {
-                option_month.add(new Option(array[i], "value"))
+<script type="text/javascript">
+    let array = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    date = new Date();
+    addMonthOptions();
+    function addMonthOptions() {
+        var option_month = document.getElementById("monthTime");
+        for (var i = 0; i < 12; i++) {
+            option_month.add(new Option(array[i], "value"))
 
-                var option_day = document.getElementById("monthTime");
-            };
+            var option_day = document.getElementById("monthTime");
         };
-        function addDayOption() {
-            var index = document.getElementById("monthTime").selectedIndex;
-            console.log(index);
-            var monthLength = new Date(date.getFullYear(), index + 1, 0).getDate();
-            var option_day = document.getElementById("dayTime");
-            option_day.options.length = 0;
-            for (var i = 1; i < monthLength + 1; i++) {
-                option_day.add(new Option(i, "value"));
-            };
+    };
+    function addDayOption() {
+        var index = document.getElementById("monthTime").selectedIndex;
+        console.log(index);
+        var monthLength = new Date(date.getFullYear(), index + 1, 0).getDate();
+        var option_day = document.getElementById("dayTime");
+        option_day.options.length = 0;
+        for (var i = 1; i < monthLength + 1; i++) {
+            option_day.add(new Option(i, "value"));
         };
+    };
 
-        var showIndex;
-        function showWindow(obj) {
-            document.getElementById("addTask").style.display = 'block';
-            showIndex = obj.id;
-        };
+    var showIndex;
+    function showWindow(obj) {
+        document.getElementById("addTask").style.display = 'block';
+        showIndex = obj.id;
+    };
 
-        function closeWindow() {
-            document.getElementById("addTask").style.display = "none";
-        };
-    </script>
+    function closeWindow() {
+        document.getElementById("addTask").style.display = "none";
+    };
+
+    window.onload = function () {
+        document.getElementById("body_block").style.backgroundImage = "url({% static 'images/taskmanagerbackground.jpg' %})";
+    }
+</script>
 {% endblock %}

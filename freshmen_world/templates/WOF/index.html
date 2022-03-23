@@ -2,52 +2,138 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Index page!
+Index page!
 {% endblock %}
 
 
 {% block body_block %}
-    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
 
-    <div class="mainbody">
-        <div class="mainbody_left">
-            <div class="weather">
-
-            </div>
-            <div class="content_name">
-                University event
-            </div>
-            <div class="content">
-                <div class="content_show">
-                    <p>Some content goes here</p>
-                </div>
-            </div>
+<div class="mainbody" id="mainbody">
+    <div class="mainbody_left">
+        <div class="weather">
         </div>
-
-        <div class="mainbody_center">
-            <div class="schoolimg">
-
-            </div>
-            <div class="searchbar">
-                <input type="text" placeholder="Type here...">
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </div>
-            <div class="info_of_uni">
-                <div class="info_of_uni_show">
-                    <p>Words about university will go here!</p>
-                </div>
-            </div>
+        <div class="content_name">
+            University event
         </div>
-    
-        <div class="mainbody_right">
-            <div class="helper_title">
-                Who can help you in University
-            </div>
-            <div class="helper">
-                <div class="helper_show">
-                    <p>Words will go here</p>
-                </div>
+        <div class="content" id="content">
+            <div class="content_show">
+                <p> A teachers' union is calling for a delay in reopening schools after the Christmas holiday because of
+                    the rapid spread of Omicron.</p>
+                <p>The Scottish Secondary Teachers Association (SSTA) says there are already staffing issues and the
+                    problem is likely to get worse.</p>
+                <P>However, the Scottish government has insisted there are currently no plans to close schools.</P>
+                <P>It comes as a number of colleges return to blended learning this week.</P>
+                <P>The move is aimed at protecting staff and students amid the rapid spread of the Covid-19 variant.
+                </P>
+                <P>Colleges Scotland said several colleges were also planning hybrid teaching for the first two weeks of
+                    next year.</P>
+                <P> Seamus Searson, general secretary of the SSTA teaching union, told the BBC's Good Morning Scotland
+                    programme he was already hearing about schools that were not fully staffed due to rising Covid
+                    cases.</P>
+                <P> And he said parents were keeping their children off to ensure they did not catch Covid in the run-up
+                    to
+                    Christmas.</P>
+                <P>
+                <ul>
+                    <li>Officials hint at tougher restrictions in Scotland</li>
+                    <li>Record 64,000 boosters delivered in Scotland</li>
+                    <li>Calls for hospitality support after 'bleak Friday'</li>
+                </ul>
+                </P>
             </div>
         </div>
     </div>
+
+    <div class="mainbody_center">
+        <div class="schoolimg">
+            <ul class="images" id="images">
+                <li id="img1"></li>
+                <li id="img2"></li>
+                <li id="img3"></li>
+                <li id="img4"></li>
+                <li id="img5"></li>
+            </ul>
+            <ul class="min_images" id="min_images">
+                <li id="dot1"></li>
+                <li id="dot2"></li>
+                <li id="dot3"></li>
+                <li id="dot4"></li>
+                <li id="dot5"></li>
+            </ul>
+            <div class="button" id="button">
+                <div class="left_button" ><</div>
+                <div class="right_button" onclick="right()">></div>
+            </div>
+        </div>
+        <div class="searchbar">
+            <input type="text" placeholder="Type here...">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </div>
+        <div class="info_of_uni" id="info_of_uni">
+            <div class="info_of_uni_show">
+                <p>Technology University is a major public research university in
+                    Beijing, and a member of the C9 League. It is also a member of Double First Class University Plan,
+                    Project 985 and Project 211. Since its establishment in 1911, it has produced many notable
+                    leaders in science, engineering, politics, business, academia, and culture.</p>
+
+                <p>Technology University is ranked 15th best university in the world in the QS World University
+                    Rankings,
+                    and ranked No.1 in Asia by the THE Asia University Rankings and the U.S. News and World
+                    Report.</p>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="mainbody_right">
+        <div class="helper_title">
+            Who can help you in University
+        </div>
+        <div class="helper" id="helper">
+            <div class="helper_show">
+                <p>Lisa Milne</p>
+                <p>Job title: International Student Adviser</p>
+                <p>Core working hours: Mon: 9.30-14.30, Tue-Fri: 9.30-17.00</p>
+                <p>About me: My career started out in hotel management after University and then I progressed to
+                    international student recruitment, mainly in East Asia. I really enjoyed the travel, seeing new
+                    places and getting to meet students and their families in their own cities.</p>
+                <p>Since 2010 I have been an International Student Adviser at the University of Glasgow. I love meeting
+                    students at the start of term during our Welcome & Orientation activities then seeing them progress
+                    all the way to graduation.</p>
+                <p> A main part of my role, as well as providing immigration advice, is to manage our Welcome Team who
+                    support our newly arrived international students at the start of term. We organise information
+                    sessions, fun events and a welcome desk so students can reach out with any questions.</p>
+                <p>In my spare time I am always out walking whether it be sunshine or rain, I love the outdoors and
+                    Scotland is the perfect place to explore.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.onload = function () {
+        document.getElementById("content").style.backgroundImage = "url({% static 'images/homepagebc.jpg' %})"
+        document.getElementById("info_of_uni").style.backgroundImage = "url({% static 'images/homepagebc.jpg' %})"
+        document.getElementById("helper").style.backgroundImage = "url({% static 'images/homepagebc.jpg' %})"
+        document.getElementById("img1").style.backgroundImage = "url({% static 'images/img_1.jpg' %})"
+        document.getElementById("img2").style.backgroundImage = "url({% static 'images/img_2.jpg' %})"
+        document.getElementById("img3").style.backgroundImage = "url({% static 'images/img_3.jpg' %})"
+        document.getElementById("img4").style.backgroundImage = "url({% static 'images/img_4.jpg' %})"
+        document.getElementById("img5").style.backgroundImage = "url({% static 'images/img_5.jpg' %})"
+    }
+    let index = 0;
+    let leftposition = -40;
+    function right(){
+        leftposition = leftposition - 680;
+        if(index < 4){  
+            document.getElementById("images").style.left = leftposition +"px";
+            index += 1;
+        }else{
+            document.getElementById("images").style.left = "-40px";
+            index = 0;
+            leftposition = -40;
+        }
+    }
+</script>
 {% endblock %}

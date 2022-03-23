@@ -7,8 +7,7 @@
     font-weight: bold;
     border-radius: 20px;
     overflow: hidden;
-    color: #F59ECA
-    background-image: url(../image/background.png);
+    color: grey;
     opacity: 0.9;
     background-position: bottom;
 }
@@ -134,7 +133,7 @@ input[type=text], select {
 
 input[type=submit] {
     width: 100%;
-    background-color: #F59ECA;
+    background-color: grey;
     color: white;
     padding: 12px 20px;
     margin: 8px 0;
