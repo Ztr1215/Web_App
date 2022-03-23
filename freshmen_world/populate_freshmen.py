@@ -30,7 +30,7 @@ def populate():
 
     ben_task = [
         {'name':'Submit English folio',
-         'completed': False,
+         'completed': True,
          'dueDate': datetime.datetime(2022, 5, 17), # 17/05/2022, 
          'timePlanned': datetime.time(9, 30),
          },

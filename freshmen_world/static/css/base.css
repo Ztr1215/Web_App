@@ -23,18 +23,25 @@
     width: 85vw;
 }
 
+.clear {
+	clear: both;
+	height: 70px;
+}
+
 .footer-bottom-page {
 	background-color: #383942;
 	bottom: 0;
-	height: 100px;
+	display: block;
+	font-size: 1em;
+	height: 60px;
 	position: fixed;
 	width: 100%;
 }
 
 .footer-bottom-page p, a {
-	font-size: 20px;
 	color: #7C7C83;
 	margin-bottom: 0;
+	position: relative;
 }
 
 .footer-bottom-page a {
