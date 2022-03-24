@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 
 
 class StudentUserForm(forms.ModelForm):
-	
 	class Meta:
 		model = User
 		fields = ('username', 'password', 'email')
@@ -95,7 +94,7 @@ class StudentUserChangeProfileForm(forms.ModelForm):
 
 		widgets = {
 			'degree' : forms.TextInput(attrs={'placeholder' : 'Degree name', }),
-			'level' : forms.NumberInput(attrs={})
+			'level' : forms.NumberInput()
 		}
 	
 		labels = {
@@ -110,3 +109,47 @@ class StudentUserChangeProfileForm(forms.ModelForm):
 		# self.fields['university'].required = True
 		# self.fields['degree'].required = False
 		# self.fields['level'].required = False
+
+class CourseForm(forms.ModelForm):
+
+	class Meta:
+		model = Course
+		fields = (
+			'name', 'level', 'credits', 'courseConvener', 
+			'courseNumber', 'university',
+			)
+
+		labels = {
+			'name': "",
+			'level': "",
+			'credits': "",
+			'courseConvener': "",
+			'courseNumber': "",
+			'university': "",
+		}
+
+		widgets = {
+			'name':  forms.TextInput(attrs={'placeholder' : 'Course name'}),
+			'level': forms.NumberInput(attrs={'placeholder' : 'Course Level'}),
+			'credits': forms.NumberInput(attrs={'placeholder' : 'Credits'}),
+			'courseConvener' : forms.TextInput(attrs={'placeholder' : 'Course Head'}),
+			'courseNumber' : forms.TextInput(attrs={'placeholder' : 'Course Number'}),
+		}
+
+class UniversityForm(forms.ModelForm):
+	class Meta:
+		model = University
+		fields = (
+			'name',
+			'location',
+			)
+
+		labels = {
+			'name' : "",
+			'location' : "",
+		}
+
+		widgets = {
+			'name' : forms.TextInput(attrs={'placeholder' : "University Name"}),
+			'location' : forms.TextInput(attrs={'placeholder' : "Location"}),
+		}

@@ -1,0 +1,25 @@
+{% extends 'WOF/base.html' %}
+{% load staticfiles  %}
+
+{% block title_block %}
+	Add course page
+{% endblock %}
+
+{% block body_block %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/authentication.css' %}"/>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap">
+	<form id="student_user_form" method="post" action="{% url 'WOF:add_course' %}" enctype="multipart/form-data">
+		<div class="authentication-input-div">
+			{% csrf_token %}
+			<p class="authentication-text">Create a course!</p>
+			{% if course_created %}
+				<p class="authentication-text" id="smaller-text">Course created: {{ course.name }}</p><br />
+			{% endif %}
+			{{ course_form.as_p }}
+			<p>
+				<input type="text" name="courseDescription" required="" placeholder="Course Description" id="id_courseDescription">
+			</p>
+			<input type="submit" name="submit" value="Create course" />
+		</div>
+	</form>
+{% endblock %}

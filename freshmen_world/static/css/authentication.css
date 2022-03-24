@@ -12,12 +12,17 @@
 	width: 30vw;
 }
 
+
 .authentication-input-div p {
 	margin-bottom: 12px;
 	margin-top: 2px;
 }
 
-.authentication-input-div #authentication-text {
+.authentication-input-div #smaller-text {
+	font-size: 15px;
+}
+
+.authentication-input-div .authentication-text {
 	font-family: "Poppins", sans-serif;
 	margin-bottom: 5px;
 	margin-top: 2px;

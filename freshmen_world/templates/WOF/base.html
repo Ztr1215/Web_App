@@ -34,6 +34,7 @@
                         {% for course in university_courses %}
                                 <a href="{% url 'WOF:show_course' course.slug %}">{{ course.name }}</a>
                         {% endfor %}
+                            <a href="{% url 'WOF:add_course' %}">Add Course</a>
                         </div>
                     </div>
                 </li>
@@ -47,6 +48,7 @@
                         {% for university in universities %}
                                 <a href="{% url 'WOF:show_university' university.slug %}">{{ university.name }}</a>
                         {% endfor %}
+                            <a href="{% url 'WOF:add_university' %}">Add University</a>
                         </div>
                     </div>
                 </li>
