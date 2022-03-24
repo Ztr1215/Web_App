@@ -13,7 +13,7 @@
 
 .top-bar-block .current {
 	height: 100%;
-	background-color: #9DBFEC;
+	background-color: #9DBFEC !important;
 }
 
 .top-bar-block .dropdown-menu {
@@ -22,16 +22,16 @@
 }
 
 /* Dropdown button */
-.top-bar-block .dropdown-courses .button-dropdown {
+.top-bar-block .dropdown-info .button-dropdown {
 	color: #1D4591;
   border: none;
   outline: none;
-  background-color: inherit;
+  background-color: #6198E0;
   font-family: inherit; /* Important for vertical align on mobile phones */
   margin: 0; /* Important for vertical align on mobile phones */
 }
 
-.top-bar-block .dropdown-courses:hover .button-dropdown {
+.top-bar-block .dropdown-info:hover .button-dropdown {
 	font-weight: bold;
 }
 
@@ -51,7 +51,7 @@
   text-align: left;
 }
 
-.top-bar-block .dropdown-courses:hover .university-content-container {
+.top-bar-block .dropdown-info:hover .university-content-container {
   display: block;
   border: 0.5px solid black;
 }

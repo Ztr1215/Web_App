@@ -67,6 +67,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'WOF.context_processors.university_courses',
+                'WOF.context_processors.university_options',
             ],
         },
     },

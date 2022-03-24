@@ -12,5 +12,13 @@ def university_courses(request):
 	return {'university_courses' : uni_courses }
 
 
+def university_options(request):
+	context_dict = {}
+	if not request.user.is_authenticated:
+		uni_options = University.objects.all()
+		context_dict['universities'] = uni_options
+	else:
+		context_dict['universities'] = None
+	return context_dict
 
 
