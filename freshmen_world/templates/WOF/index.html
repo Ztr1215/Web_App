@@ -11,7 +11,12 @@ Index page!
 
 <div class="mainbody" id="mainbody">
     <div class="mainbody_left">
-        <div class="weather">
+        <div class="weather" id="weather">
+        <ul>
+            <li id="city"></li>
+            <li id="update_time"></li>
+            <li id="weather_text"></li>
+        </ul>
         </div>
         <div class="content_name">
             University event
@@ -55,14 +60,14 @@ Index page!
                 <li id="img5"></li>
             </ul>
             <ul class="min_images" id="min_images">
-                <li id="dot1"></li>
-                <li id="dot2"></li>
-                <li id="dot3"></li>
-                <li id="dot4"></li>
-                <li id="dot5"></li>
+                <li id="dot1" onclick="dot1()"></li>
+                <li id="dot2" onclick="dot2()"></li>
+                <li id="dot3" onclick="dot3()"></li>
+                <li id="dot4" onclick="dot4()"></li>
+                <li id="dot5" onclick="dot5()"></li>
             </ul>
             <div class="button" id="button">
-                <div class="left_button" ><</div>
+                <div class="left_button" onclick="left()"><</div>
                 <div class="right_button" onclick="right()">></div>
             </div>
         </div>
@@ -112,28 +117,92 @@ Index page!
 </div>
 
 <script>
+    let images_arr = ["img_1.jpg","img_2.jpg","img_3.jpg","img_4.jpg","img_5.jpg"];
     window.onload = function () {
         document.getElementById("content").style.backgroundImage = "url({% static 'images/homepagebc.jpg' %})"
         document.getElementById("info_of_uni").style.backgroundImage = "url({% static 'images/homepagebc.jpg' %})"
         document.getElementById("helper").style.backgroundImage = "url({% static 'images/homepagebc.jpg' %})"
+        document.getElementById("weather").style.backgroundImage = "url({% static 'images/homepagebc.jpg' %})"
         document.getElementById("img1").style.backgroundImage = "url({% static 'images/img_1.jpg' %})"
         document.getElementById("img2").style.backgroundImage = "url({% static 'images/img_2.jpg' %})"
         document.getElementById("img3").style.backgroundImage = "url({% static 'images/img_3.jpg' %})"
         document.getElementById("img4").style.backgroundImage = "url({% static 'images/img_4.jpg' %})"
         document.getElementById("img5").style.backgroundImage = "url({% static 'images/img_5.jpg' %})"
+
+        // If the University is in the Glasgow
+        // var url = "http://api.weatherapi.com/v1/current.json?key=9df25054928f44b4975134755222403&q=Glasgow&aqi=yes";
+        
+        // If the University is in the Melrose
+        var url = "http://api.weatherapi.com/v1/current.json?key=9df25054928f44b4975134755222403&q=Melrose&aqi=yes"; 
+
+        var request;
+        if (window.XMLHttpRequest) {
+            request = new XMLHttpRequest(); 
+        } 
+        request.onreadystatechange = function () {
+            if (request.readyState == 4) {
+                var jsonObj = JSON.parse(request.responseText); 
+                document.getElementById("city").innerHTML = jsonObj.location.name;
+                document.getElementById("update_time").innerHTML = jsonObj.current.last_updated;
+                document.getElementById("weather_text").innerHTML = jsonObj.current.condition.text;
+            }
+        }
+        request.open("GET", url, true);
+        request.send();
     }
-    let index = 0;
-    let leftposition = -40;
+    let index = 1;
+    let position = -40;
     function right(){
-        leftposition = leftposition - 680;
-        if(index < 4){  
-            document.getElementById("images").style.left = leftposition +"px";
+        if(index >= 1 && index < 5){  
+            position = position - 680;
+            document.getElementById("images").style.left = position +"px";
             index += 1;
-        }else{
+        }else if(index = 5){
             document.getElementById("images").style.left = "-40px";
-            index = 0;
-            leftposition = -40;
+            index = 1;
+            position = -40;
         }
     }
+
+    function left(){
+        if(index > 1 && index<=5){
+            position = position + 680;
+            document.getElementById("images").style.left = position +"px";
+            index -= 1;
+        }else if(index = 1){
+            document.getElementById("images").style.left = "-2760px";
+            index = 5;
+            position = -2760
+        }
+    }
+
+    function dot1(){
+        document.getElementById("images").style.left = -40 +"px";
+        index = 1;
+        position = -40
+    }
+    function dot2(){
+        document.getElementById("images").style.left = -720 +"px";
+        index = 2;
+        position = -720
+    }
+    function dot3(){
+        document.getElementById("images").style.left = -1400 +"px";
+        index = 3;
+        position = -1400
+    }
+    function dot4(){
+        document.getElementById("images").style.left = -2080 +"px";
+        index = 4;
+        position = -2080
+    }
+    function dot5(){
+        document.getElementById("images").style.left = -2760 +"px";
+        index = 5;
+        position = -2760
+    }
+
 </script>
+
+
 {% endblock %}

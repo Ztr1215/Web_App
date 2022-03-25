@@ -1,8 +1,6 @@
-html{
-    background-color: #383942;
-}
 .mainbody {
-    width: 80vw;
+    width: 1360px;
+    height: 1000px;
     margin: 0 auto;
     border-top: 2px solid black;
     display: grid;
@@ -22,6 +20,14 @@ html{
     background-size: cover;
     border: 1px solid black;
     height: 200px;
+    justify-items: center;
+    color: white;
+}
+.weather ul{
+    text-align: center;  
+    margin-top: 70px;
+    margin-right: 50px;
+    /* list-style: none; */
 }
 
 .content_name {
@@ -64,7 +70,7 @@ html{
     list-style: none;
 }
 
-#img1,#img2,#img3,#img4,#img5{
+.images li{
     width: 680px;
     background-size: cover;
 }
@@ -99,6 +105,10 @@ html{
     bottom: 350px;
     display: flex;
     justify-content: space-between;
+}
+
+.left_button,.right_button{
+    cursor: pointer;
 }
 
 .searchbar {
