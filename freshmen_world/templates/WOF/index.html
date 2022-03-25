@@ -1,208 +1,272 @@
-{% extends 'WOF/base.html' %}
-{% load staticfiles %}
-
-{% block title_block %}
-Index page!
-{% endblock %}
+<!DOCTYPE html>
 
 
-{% block body_block %}
-<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<html>
 
-<div class="mainbody" id="mainbody">
-    <div class="mainbody_left">
-        <div class="weather" id="weather">
-        <ul>
-            <li id="city"></li>
-            <li id="update_time"></li>
-            <li id="weather_text"></li>
-        </ul>
-        </div>
-        <div class="content_name">
-            University event
-        </div>
-        <div class="content" id="content">
-            <div class="content_show">
-                <p> A teachers' union is calling for a delay in reopening schools after the Christmas holiday because of
-                    the rapid spread of Omicron.</p>
-                <p>The Scottish Secondary Teachers Association (SSTA) says there are already staffing issues and the
-                    problem is likely to get worse.</p>
-                <P>However, the Scottish government has insisted there are currently no plans to close schools.</P>
-                <P>It comes as a number of colleges return to blended learning this week.</P>
-                <P>The move is aimed at protecting staff and students amid the rapid spread of the Covid-19 variant.
-                </P>
-                <P>Colleges Scotland said several colleges were also planning hybrid teaching for the first two weeks of
-                    next year.</P>
-                <P> Seamus Searson, general secretary of the SSTA teaching union, told the BBC's Good Morning Scotland
-                    programme he was already hearing about schools that were not fully staffed due to rising Covid
-                    cases.</P>
-                <P> And he said parents were keeping their children off to ensure they did not catch Covid in the run-up
-                    to
-                    Christmas.</P>
-                <P>
-                <ul>
-                    <li>Officials hint at tougher restrictions in Scotland</li>
-                    <li>Record 64,000 boosters delivered in Scotland</li>
-                    <li>Calls for hospitality support after 'bleak Friday'</li>
-                </ul>
-                </P>
+<head lang="en">
+    <meta charset="UTF-8" />
+    <title>
+        Freshmen World -
+
+        Index page!
+
+    </title>
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/base.js"></script>
+    <!-- <link rel="stylesheet" href="/static/css/reset.css"> -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/base.css">
+</head>
+
+<body>
+
+    <ul class="nav justify-content-center top-bar-block">
+        <li class="nav-item"><a class="nav-link" href="/WOF/">Homepage</a></li>
+        <li class="nav-item"><a class="nav-link" href="/WOF/taskmanager/">Task Manager</a></li>
+
+        <li class="nav-item"><a class="nav-link" href="/WOF/course_selector/">Course Selector</a></li>
+        <li class="nav-item"><a class="nav-link" href="/WOF/login/">Login</a></li>
+        <li class="nav-item"><a class="nav-link" href="/WOF/register/">Register</a></li>
+
+    </ul>
+
+    <div class="body-block">
+
+        <link rel="stylesheet" href="/static/css/index.css">
+
+        <div class="mainbody" id="mainbody">
+            <div class="mainbody_left">
+                <div class="weather" id="weather">
+                    <ul>
+                        <li id="city"></li>
+                        <li id="update_time"></li>
+                        <li id="weather_text"></li>
+                    </ul>
+                </div>
+                <div class="content_name">
+                    University event
+                </div>
+                <div class="content" id="content">
+                    <div class="content_show">
+                        <p> A teachers' union is calling for a delay in reopening schools after the Christmas holiday
+                            because of
+                            the rapid spread of Omicron.</p>
+                        <p>The Scottish Secondary Teachers Association (SSTA) says there are already staffing issues and
+                            the
+                            problem is likely to get worse.</p>
+                        <P>However, the Scottish government has insisted there are currently no plans to close schools.
+                        </P>
+                        <P>It comes as a number of colleges return to blended learning this week.</P>
+                        <P>The move is aimed at protecting staff and students amid the rapid spread of the Covid-19
+                            variant.
+                        </P>
+                        <P>Colleges Scotland said several colleges were also planning hybrid teaching for the first two
+                            weeks of
+                            next year.</P>
+                        <P> Seamus Searson, general secretary of the SSTA teaching union, told the BBC's Good Morning
+                            Scotland
+                            programme he was already hearing about schools that were not fully staffed due to rising
+                            Covid
+                            cases.</P>
+                        <P> And he said parents were keeping their children off to ensure they did not catch Covid in
+                            the run-up
+                            to
+                            Christmas.</P>
+                        <P>
+                        <ul>
+                            <li>Officials hint at tougher restrictions in Scotland</li>
+                            <li>Record 64,000 boosters delivered in Scotland</li>
+                            <li>Calls for hospitality support after 'bleak Friday'</li>
+                        </ul>
+                        </P>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mainbody_center">
+                <div class="schoolimg">
+                    <ul class="images" id="images">
+                        <li id="img1"></li>
+                        <li id="img2"></li>
+                        <li id="img3"></li>
+                        <li id="img4"></li>
+                        <li id="img5"></li>
+                    </ul>
+                    <ul class="min_images" id="min_images">
+                        <li id="dot1" onclick="dot1()"></li>
+                        <li id="dot2" onclick="dot2()"></li>
+                        <li id="dot3" onclick="dot3()"></li>
+                        <li id="dot4" onclick="dot4()"></li>
+                        <li id="dot5" onclick="dot5()"></li>
+                    </ul>
+                    <div class="button" id="button">
+                        <div class="left_button" onclick="left()"><</div>
+                        <div class="right_button" onclick="right()">></div>
+                    </div>
+                </div>
+                <div class="searchbar">
+                    <input type="text" placeholder="Type here...">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </div>
+                <div class="info_of_uni" id="info_of_uni">
+                    <div class="info_of_uni_show">
+                        <p>Technology University is a major public research university in
+                            Beijing, and a member of the C9 League. It is also a member of Double First Class University
+                            Plan,
+                            Project 985 and Project 211. Since its establishment in 1911, it has produced many notable
+                            leaders in science, engineering, politics, business, academia, and culture.</p>
+
+                        <p>Technology University is ranked 15th best university in the world in the QS World University
+                            Rankings,
+                            and ranked No.1 in Asia by the THE Asia University Rankings and the U.S. News and World
+                            Report.</p>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="mainbody_right">
+                <div class="helper_title">
+                    Who can help you in University
+                </div>
+                <div class="helper" id="helper">
+                    <div class="helper_show">
+                        <p>Lisa Milne</p>
+                        <p>Job title: International Student Adviser</p>
+                        <p>Core working hours: Mon: 9.30-14.30, Tue-Fri: 9.30-17.00</p>
+                        <p>About me: My career started out in hotel management after University and then I progressed to
+                            international student recruitment, mainly in East Asia. I really enjoyed the travel, seeing
+                            new
+                            places and getting to meet students and their families in their own cities.</p>
+                        <p>Since 2010 I have been an International Student Adviser at the University of Glasgow. I love
+                            meeting
+                            students at the start of term during our Welcome & Orientation activities then seeing them
+                            progress
+                            all the way to graduation.</p>
+                        <p> A main part of my role, as well as providing immigration advice, is to manage our Welcome
+                            Team who
+                            support our newly arrived international students at the start of term. We organise
+                            information
+                            sessions, fun events and a welcome desk so students can reach out with any questions.</p>
+                        <p>In my spare time I am always out walking whether it be sunshine or rain, I love the outdoors
+                            and
+                            Scotland is the perfect place to explore.</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="mainbody_center">
-        <div class="schoolimg">
-            <ul class="images" id="images">
-                <li id="img1"></li>
-                <li id="img2"></li>
-                <li id="img3"></li>
-                <li id="img4"></li>
-                <li id="img5"></li>
-            </ul>
-            <ul class="min_images" id="min_images">
-                <li id="dot1" onclick="dot1()"></li>
-                <li id="dot2" onclick="dot2()"></li>
-                <li id="dot3" onclick="dot3()"></li>
-                <li id="dot4" onclick="dot4()"></li>
-                <li id="dot5" onclick="dot5()"></li>
-            </ul>
-            <div class="button" id="button">
-                <div class="left_button" onclick="left()"><</div>
-                <div class="right_button" onclick="right()">></div>
-            </div>
-        </div>
-        <div class="searchbar">
-            <input type="text" placeholder="Type here...">
-            <button type="submit"><i class="fa fa-search"></i></button>
-        </div>
-        <div class="info_of_uni" id="info_of_uni">
-            <div class="info_of_uni_show">
-                <p>Technology University is a major public research university in
-                    Beijing, and a member of the C9 League. It is also a member of Double First Class University Plan,
-                    Project 985 and Project 211. Since its establishment in 1911, it has produced many notable
-                    leaders in science, engineering, politics, business, academia, and culture.</p>
+        <script>
+            let images_arr = ["img_1.jpg", "img_2.jpg", "img_3.jpg", "img_4.jpg", "img_5.jpg"];
+            window.onload = function () {
+                document.getElementById("content").style.backgroundImage = "url(/static/images/homepagebc.jpg)"
+                document.getElementById("info_of_uni").style.backgroundImage = "url(/static/images/homepagebc.jpg)"
+                document.getElementById("helper").style.backgroundImage = "url(/static/images/homepagebc.jpg)"
+                document.getElementById("weather").style.backgroundImage = "url(/static/images/homepagebc.jpg)"
+                document.getElementById("img1").style.backgroundImage = "url(/static/images/img_1.jpg)"
+                document.getElementById("img2").style.backgroundImage = "url(/static/images/img_2.jpg)"
+                document.getElementById("img3").style.backgroundImage = "url(/static/images/img_3.jpg)"
+                document.getElementById("img4").style.backgroundImage = "url(/static/images/img_4.jpg)"
+                document.getElementById("img5").style.backgroundImage = "url(/static/images/img_5.jpg)"
 
-                <p>Technology University is ranked 15th best university in the world in the QS World University
-                    Rankings,
-                    and ranked No.1 in Asia by the THE Asia University Rankings and the U.S. News and World
-                    Report.</p>
+                // If the University is in the Glasgow
+                // var url = "http://api.weatherapi.com/v1/current.json?key=9df25054928f44b4975134755222403&q=Glasgow&aqi=yes";
 
-            </div>
-        </div>
-    </div>
+                // If the University is in the Melrose
+                var url = "http://api.weatherapi.com/v1/current.json?key=9df25054928f44b4975134755222403&q=Melrose&aqi=yes";
 
-    <div class="mainbody_right">
-        <div class="helper_title">
-            Who can help you in University
-        </div>
-        <div class="helper" id="helper">
-            <div class="helper_show">
-                <p>Lisa Milne</p>
-                <p>Job title: International Student Adviser</p>
-                <p>Core working hours: Mon: 9.30-14.30, Tue-Fri: 9.30-17.00</p>
-                <p>About me: My career started out in hotel management after University and then I progressed to
-                    international student recruitment, mainly in East Asia. I really enjoyed the travel, seeing new
-                    places and getting to meet students and their families in their own cities.</p>
-                <p>Since 2010 I have been an International Student Adviser at the University of Glasgow. I love meeting
-                    students at the start of term during our Welcome & Orientation activities then seeing them progress
-                    all the way to graduation.</p>
-                <p> A main part of my role, as well as providing immigration advice, is to manage our Welcome Team who
-                    support our newly arrived international students at the start of term. We organise information
-                    sessions, fun events and a welcome desk so students can reach out with any questions.</p>
-                <p>In my spare time I am always out walking whether it be sunshine or rain, I love the outdoors and
-                    Scotland is the perfect place to explore.</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    let images_arr = ["img_1.jpg","img_2.jpg","img_3.jpg","img_4.jpg","img_5.jpg"];
-    window.onload = function () {
-        document.getElementById("content").style.backgroundImage = "url({% static 'images/homepagebc.jpg' %})"
-        document.getElementById("info_of_uni").style.backgroundImage = "url({% static 'images/homepagebc.jpg' %})"
-        document.getElementById("helper").style.backgroundImage = "url({% static 'images/homepagebc.jpg' %})"
-        document.getElementById("weather").style.backgroundImage = "url({% static 'images/homepagebc.jpg' %})"
-        document.getElementById("img1").style.backgroundImage = "url({% static 'images/img_1.jpg' %})"
-        document.getElementById("img2").style.backgroundImage = "url({% static 'images/img_2.jpg' %})"
-        document.getElementById("img3").style.backgroundImage = "url({% static 'images/img_3.jpg' %})"
-        document.getElementById("img4").style.backgroundImage = "url({% static 'images/img_4.jpg' %})"
-        document.getElementById("img5").style.backgroundImage = "url({% static 'images/img_5.jpg' %})"
-
-        // If the University is in the Glasgow
-        // var url = "http://api.weatherapi.com/v1/current.json?key=9df25054928f44b4975134755222403&q=Glasgow&aqi=yes";
-        
-        // If the University is in the Melrose
-        var url = "http://api.weatherapi.com/v1/current.json?key=9df25054928f44b4975134755222403&q=Melrose&aqi=yes"; 
-
-        var request;
-        if (window.XMLHttpRequest) {
-            request = new XMLHttpRequest(); 
-        } 
-        request.onreadystatechange = function () {
-            if (request.readyState == 4) {
-                var jsonObj = JSON.parse(request.responseText); 
-                document.getElementById("city").innerHTML = jsonObj.location.name;
-                document.getElementById("update_time").innerHTML = jsonObj.current.last_updated;
-                document.getElementById("weather_text").innerHTML = jsonObj.current.condition.text;
+                var request;
+                if (window.XMLHttpRequest) {
+                    request = new XMLHttpRequest();
+                }
+                request.onreadystatechange = function () {
+                    if (request.readyState == 4) {
+                        var jsonObj = JSON.parse(request.responseText);
+                        document.getElementById("city").innerHTML = jsonObj.location.name;
+                        document.getElementById("update_time").innerHTML = jsonObj.current.last_updated;
+                        document.getElementById("weather_text").innerHTML = jsonObj.current.condition.text;
+                    }
+                }
+                request.open("GET", url, true);
+                request.send();
             }
-        }
-        request.open("GET", url, true);
-        request.send();
-    }
-    let index = 1;
-    let position = -40;
-    function right(){
-        if(index >= 1 && index < 5){  
-            position = position - 680;
-            document.getElementById("images").style.left = position +"px";
-            index += 1;
-        }else if(index = 5){
-            document.getElementById("images").style.left = "-40px";
-            index = 1;
-            position = -40;
-        }
-    }
+            let index = 1;
+            let position = -40;
+            function right() {
+                if (index >= 1 && index < 5) {
+                    position = position - 680;
+                    document.getElementById("images").style.left = position + "px";
+                    index += 1;
+                } else if (index = 5) {
+                    document.getElementById("images").style.left = "-40px";
+                    index = 1;
+                    position = -40;
+                }
+            }
 
-    function left(){
-        if(index > 1 && index<=5){
-            position = position + 680;
-            document.getElementById("images").style.left = position +"px";
-            index -= 1;
-        }else if(index = 1){
-            document.getElementById("images").style.left = "-2760px";
-            index = 5;
-            position = -2760
-        }
-    }
+            function left() {
+                if (index > 1 && index <= 5) {
+                    position = position + 680;
+                    document.getElementById("images").style.left = position + "px";
+                    index -= 1;
+                } else if (index = 1) {
+                    document.getElementById("images").style.left = "-2760px";
+                    index = 5;
+                    position = -2760
+                }
+            }
 
-    function dot1(){
-        document.getElementById("images").style.left = -40 +"px";
-        index = 1;
-        position = -40
-    }
-    function dot2(){
-        document.getElementById("images").style.left = -720 +"px";
-        index = 2;
-        position = -720
-    }
-    function dot3(){
-        document.getElementById("images").style.left = -1400 +"px";
-        index = 3;
-        position = -1400
-    }
-    function dot4(){
-        document.getElementById("images").style.left = -2080 +"px";
-        index = 4;
-        position = -2080
-    }
-    function dot5(){
-        document.getElementById("images").style.left = -2760 +"px";
-        index = 5;
-        position = -2760
-    }
+            function dot1() {
+                document.getElementById("images").style.left = -40 + "px";
+                index = 1;
+                position = -40
+            }
+            function dot2() {
+                document.getElementById("images").style.left = -720 + "px";
+                index = 2;
+                position = -720
+            }
+            function dot3() {
+                document.getElementById("images").style.left = -1400 + "px";
+                index = 3;
+                position = -1400
+            }
+            function dot4() {
+                document.getElementById("images").style.left = -2080 + "px";
+                index = 4;
+                position = -2080
+            }
+            function dot5() {
+                document.getElementById("images").style.left = -2760 + "px";
+                index = 5;
+                position = -2760
+            }
 
-</script>
+        </script>
 
 
-{% endblock %}
+
+    </div>
+
+    <div class="clear"></div>
+    <footer class="footer-bottom-page">
+        <div class="footer-container">
+            <div class="footer-item left">
+                <!-- Contact us -->
+                <p><a href="mailto:wad2lab12d@gmail.com">Contact us</a></p>
+                <p><a href="/WOF/team/">Meet the team</a></p>
+                <!-- Meet the team -->
+            </div>
+            <div class="footer-item right">
+                <p>Opposing side</p>
+                <!-- Some logo action here -->
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
