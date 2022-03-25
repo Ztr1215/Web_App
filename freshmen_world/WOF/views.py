@@ -145,10 +145,12 @@ def add_university(request):
 		university_form = UniversityForm(request.POST)
 		if university_form.is_valid():
 			university = university_form.save()
+			student_user = StudentUser.objects.filter(user=request.user)[0]
 
 			# writeUniversityToXML
 			writeUniversityToXML(university.slug)
-
+			student_user.university = university
+			student_user.save()
 			university_created = True
 		else:
 			print(university_form.errors)
@@ -157,8 +159,6 @@ def add_university(request):
 	return render(request, 'WOF/add_university.html', context={'university_form' : university_form,
 																'university_created' : university_created,
 																'university' : university})
-
-
 
 
 def show_university(request, university_name_slug):

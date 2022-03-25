@@ -3,9 +3,9 @@
 		<course id="maths-2f-groups-symmetric-transformations">Coolest course ever (maths 2f).</course>
 		<course id="maths-2d-modelling">Modelling some stuff.</course>
 		<course id="computer-systems">You will enjoy Sigma16 maybe.</course> 
-	<course id="eating-food">bob mortimer eating food</course></university>
+	</university>
 	<university id="st-boswells-university">
 		<course id="dealing-with-old-people">Enjoy dealing with people over 60.</course>
 		<course id="avoiding-angry-farmers">Some people are not happy farmers, you will learn to avoid them.</course>
-	<course id="sbyt-enrolment">it is time for xml to work</course></university>
-<university id="melrose-university"><course id="survive-university">melrose was pretty cool</course></university></root>
+	</university>
+<university id="anotheruniversity" /><university id="open-university" /></root>
