@@ -25,6 +25,7 @@ class StudentUser(models.Model):
     university = models.ForeignKey(University, on_delete=models.CASCADE, null=True)
     degree = models.CharField(max_length=80, unique = False, default="", null=True)
     level = models.IntegerField(default=0, null=True)
+    isAdmin = models.BooleanField(default=False, null=False)
 
     class Meta:
         verbose_name_plural = 'Student Users'
@@ -51,21 +52,6 @@ class Task(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class AdminUser(models.Model):
-
-    university = models.CharField(max_length = 80,unique = False)
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
-        super(Category, self).save(*args, **kwargs)
-    
-    class Meta:
-        verbose_name_plural = 'Admin Users'
-        
-    def __str__(self):
-        return self.email
         
 
 class Course(models.Model):
@@ -73,7 +59,7 @@ class Course(models.Model):
     level = models.IntegerField(unique = False)
     credits = models.IntegerField(unique = False)
     courseConvener = models.CharField(max_length = 90, unique = False)
-    courseNumber = models.CharField(max_length = 30, unique = False)
+    courseNumber = models.CharField(max_length = 30, unique = True)
     university = models.ForeignKey(University, on_delete=models.CASCADE , null=True)
     slug = models.SlugField(unique=True)
 

@@ -50,6 +50,7 @@ def populate():
         'password': "HeavensDoorKnocker",
         'degree': "Music History",
         'level': 3,
+        'isAdmin': False,
         'tasks': bobbyd_task
         },
         {'username': "MaclaurinMan",
@@ -58,6 +59,7 @@ def populate():
         'password': "TaylorSeriesSucks",
         'degree': "Mathematics",
         'level': 4,
+        'isAdmin': False,
         'tasks': maclaurin_task
         },
     ]
@@ -69,6 +71,7 @@ def populate():
         'password': "MatthewCantWalk",
         'degree': "Helping old people",
         'level': 3,
+        'isAdmin': False,
         'tasks': matty_task
         },
         {'username': "BigBen",
@@ -77,6 +80,7 @@ def populate():
         'password': "BenDoesNotClean",
         'degree': "Dishwasher Cleaning",
         'level': 1,
+        'isAdmin': False,
         'tasks': ben_task
         },
     ]
@@ -134,7 +138,7 @@ def populate():
             # Need returned value as to assign values
             created_user = add_user(created_uni, user['username'], user['firstName'], 
                             user['secondName'], user['password'], 
-                            user['degree'], user['level'])
+                            user['degree'], user['level'], user['isAdmin'])
             for task in user['tasks']:
             # Assign each task to specific user
                 add_task(created_user, task['name'], task['completed'], task['dueDate'], task['timePlanned'])
@@ -166,12 +170,12 @@ def add_task(studentUser, name : str, completed : str, dueDate, timePlanned):
     return created_task
 
 def add_user(university, username : str, firstName : str, secondName : str,
-                password : str, degree : str, level : int):
+                password : str, degree : str, level : int, isAdmin : bool):
     # Need to make users first in order to assign to studentUser model
     created_user = User.objects.get_or_create(username = username, password = password, first_name = firstName, last_name = secondName)[0]
     created_user.set_password(password)
     created_user.save()
-    created_student_user = StudentUser.objects.get_or_create(user = created_user, university = university, degree = degree, level = level)[0]
+    created_student_user = StudentUser.objects.get_or_create(user = created_user, university = university, degree = degree, level = level, isAdmin = isAdmin)[0]
     created_student_user.save()
     return created_student_user
    

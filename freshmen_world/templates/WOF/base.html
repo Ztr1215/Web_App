@@ -26,21 +26,52 @@
             <ul class="nav justify-content-center top-bar-block">
                 <li class="nav-item"><a class="nav-link" href="{% url 'WOF:index' %}">Homepage</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'WOF:task_manager' %}">Task Manager</a></li>
-            {% if user.is_authenticated %}
+            {% if user.is_authenticated and student_university %}
                 <li class="nav-item">
-                    <div class="dropdown-courses">
+                    <div class="dropdown-info">
                         <button class="button-dropdown nav-link" id="course-button">Courses</button>
                         <div class="university-content-container">
                         {% for course in university_courses %}
                                 <a href="{% url 'WOF:show_course' course.slug %}">{{ course.name }}</a>
                         {% endfor %}
+                        {% if is_admin %}
+                            <a href="{% url 'WOF:add_course' %}">Add Course</a>
+                        {% endif %}
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'WOF:profile' %}">Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'WOF:logout' %}">Logout</a></li>
+            {% elif user.is_authenticated and not student_university %}
+                <li class="nav-item">
+                    <div class="dropdown-info">
+                        <button class="button-dropdown nav-link" id="course-button">University</button>
+                        <div class="university-content-container">
+                        {% for university in universities %}
+                                <a href="{% url 'WOF:show_university' university.slug %}">{{ university.name }}</a>
+                        {% endfor %}
+                        {% if is_admin %}
+                            <a href="{% url 'WOF:add_university' %}">Add University</a>
+                        {% endif %}
                         </div>
                     </div>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'WOF:profile' %}">Profile</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'WOF:logout' %}">Logout</a></li>
             {% else %}
-                <li class="nav-item"><a class="nav-link" href="{% url 'WOF:selector' %}">Course Selector</a></li>
+                <li class="nav-item">
+                    <div class="dropdown-info">
+                        <button class="button-dropdown nav-link" id="course-button">University</button>
+                        <div class="university-content-container">
+                        {% for university in universities %}
+                                <a href="{% url 'WOF:show_university' university.slug %}">{{ university.name }}</a>
+                        {% endfor %}
+                        {% if is_admin %}
+                            <a href="{% url 'WOF:add_university' %}">Add University</a>
+                        {% endif %}
+                        </div>
+                    </div>
+                </li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'WOF:user_login' %}">Login</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'WOF:user_register' %}">Register</a></li>
             {% endif %}

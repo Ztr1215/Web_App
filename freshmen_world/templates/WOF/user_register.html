@@ -15,7 +15,7 @@
 	{% else %}
 		<form id="student_user_form" method="post" action="{% url 'WOF:user_register' %}" enctype="multipart/form-data">
 			<div class="authentication-input-div">
-				<p id="authentication-text">Register at Freshmen World!</p>
+				<p class="authentication-text">Register at Freshmen World!</p>
 				{% csrf_token %}
 				{{ student_user_form.as_p }}
 				{{ student_user_profile_form.as_p }}

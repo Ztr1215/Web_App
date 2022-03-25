@@ -8,10 +8,12 @@ function loadDoc() {
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			console.log("At this point");
-			document.getElementById("xml-content").innerHTML = this.responseText;
+			var response = this.responseText;
+
+
+			document.getElementById("xml-content").innerHTML = response;
 		}
 	};
-	xhttp.open("GET", "uni_course_info.txt", true);
+	xhttp.open("GET", "uni_course_info.txt", false);
 	xhttp.send();
 }

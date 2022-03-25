@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 
 
 class StudentUserForm(forms.ModelForm):
-	
 	class Meta:
 		model = User
 		fields = ('username', 'password', 'email')
@@ -34,31 +33,32 @@ class StudentUserForm(forms.ModelForm):
 class StudentUserProfileForm(forms.ModelForm):
 	class Meta:
 		model = StudentUser
-		fields = ('university', 'degree', 'level', )
+		fields = ('university', 'degree', 'level', 'isAdmin')
 
 		widgets = {
 			'degree' : forms.TextInput(attrs={'placeholder' : 'Degree name', }),
-			'level' : forms.NumberInput(attrs={})
+			'level' : forms.NumberInput(attrs={}),
+			'isAdmin': forms.CheckboxInput(attrs={})
 		}
 	
 		labels = {
 			'university' : "",
 			'degree' : "",
 			'level' : "",
+			'isAdmin': "Admin",
 		}
 
 
 	def __init__(self, *args, **kwargs):
 		super(StudentUserProfileForm, self).__init__(*args, **kwargs)
-		self.fields['university'].required = True
+		self.fields['university'].required = False
 		self.fields['degree'].required = False
 		self.fields['level'].required = False
 
 class StudentUserChangeForm(forms.ModelForm):
-	
 	class Meta:
 		model = User
-		fields = ('username', 'first_name', 'last_name', 'password', 'email')
+		fields = ('username', 'first_name', 'last_name', 'password', 'email',)
 
 		widgets = {
 			'username' : forms.TextInput(attrs={'placeholder' : 'Username'}),
@@ -91,17 +91,19 @@ class StudentUserChangeForm(forms.ModelForm):
 class StudentUserChangeProfileForm(forms.ModelForm):
 	class Meta:
 		model = StudentUser
-		fields = ('university', 'degree', 'level', )
+		fields = ('university', 'degree', 'level', 'isAdmin')
 
 		widgets = {
 			'degree' : forms.TextInput(attrs={'placeholder' : 'Degree name', }),
-			'level' : forms.NumberInput(attrs={})
+			'level' : forms.NumberInput(),
+			'isAdmin': forms.CheckboxInput(attrs={}),
 		}
 	
 		labels = {
 			'university' : "",
 			'degree' : "",
 			'level' : "",
+			'isAdmin': "Admin",
 		}
 
 
@@ -110,3 +112,47 @@ class StudentUserChangeProfileForm(forms.ModelForm):
 		# self.fields['university'].required = True
 		# self.fields['degree'].required = False
 		# self.fields['level'].required = False
+
+class CourseForm(forms.ModelForm):
+
+	class Meta:
+		model = Course
+		fields = (
+			'name', 'level', 'credits', 'courseConvener', 
+			'courseNumber', 'university',
+			)
+
+		labels = {
+			'name': "",
+			'level': "",
+			'credits': "",
+			'courseConvener': "",
+			'courseNumber': "",
+			'university': "",
+		}
+
+		widgets = {
+			'name':  forms.TextInput(attrs={'placeholder' : 'Course name'}),
+			'level': forms.NumberInput(attrs={'placeholder' : 'Course Level'}),
+			'credits': forms.NumberInput(attrs={'placeholder' : 'Credits'}),
+			'courseConvener' : forms.TextInput(attrs={'placeholder' : 'Course Head'}),
+			'courseNumber' : forms.TextInput(attrs={'placeholder' : 'Course Number'}),
+		}
+
+class UniversityForm(forms.ModelForm):
+	class Meta:
+		model = University
+		fields = (
+			'name',
+			'location',
+			)
+
+		labels = {
+			'name' : "",
+			'location' : "",
+		}
+
+		widgets = {
+			'name' : forms.TextInput(attrs={'placeholder' : "University Name"}),
+			'location' : forms.TextInput(attrs={'placeholder' : "Location"}),
+		}
