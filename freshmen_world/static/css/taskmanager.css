@@ -106,10 +106,11 @@
 }
 
 .addTask {
+    color: black;
     width: 500px;
     height: 650px;
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
@@ -117,11 +118,12 @@
 }
 
 .container {
-    margin: 50px 15px
+    margin: 5px 5px;
 }
 
 /* copy part */
 input[type=text], select {
+    color: black;
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -133,7 +135,7 @@ input[type=text], select {
 
 input[type=submit] {
     width: 100%;
-    background-color: grey;
+    background-color: black;
     color: white;
     padding: 12px 20px;
     margin: 8px 0;

@@ -37,7 +37,7 @@ class StudentUserProfileForm(forms.ModelForm):
 
 		widgets = {
 			'degree' : forms.TextInput(attrs={'placeholder' : 'Degree name', }),
-			'level' : forms.NumberInput(attrs={}),
+			'level' : forms.NumberInput(attrs={'placeholder' : "University Year", 'min':1, 'max':10}),
 			'isAdmin': forms.CheckboxInput(attrs={})
 		}
 	
@@ -95,7 +95,7 @@ class StudentUserChangeProfileForm(forms.ModelForm):
 
 		widgets = {
 			'degree' : forms.TextInput(attrs={'placeholder' : 'Degree name', }),
-			'level' : forms.NumberInput(),
+			'level' : forms.NumberInput(attrs={'placeholder' : "University Year", 'value':"", 'min': '1','max':10}),
 			'isAdmin': forms.CheckboxInput(attrs={}),
 		}
 	
