@@ -1,10 +1,53 @@
+
 {% extends 'WOF/base.html' %}
 {% load staticfiles  %}
 
 {% block title_block %}
+<<<<<<< Updated upstream
 	{{ university.name }}
+=======
+{{ university.name }}
+>>>>>>> Stashed changes
 {% endblock %}
 
-{% block body_block %}
-	<h1>{{ university.name }}</h1>
-{% endblock %}
+    {% block body_block %}
+<link rel="stylesheet" href="{% static 'css/university_base.css' %}">
+<br />
+<br />
+<h1 class="center-text">{{ university.name }}</h1>
+<br />
+
+
+<h2>
+    Useful information:
+    <br />
+    1. It is located in {{ university.location }}
+    <br />
+    <br />
+    2. Course catalog:
+</h2>
+
+
+
+
+    {% for course in courses %}
+
+<h4>
+    Course name: {{course.name}}
+    <br />
+    Level: {{course.level}}
+    <br />
+    Has this amount of credits: {{course.credits}}
+    <br />
+    Course number: {{course.courseNumber}}
+    <br />
+    Course slug: {{course.slug}}
+    <br />
+    Course convener (in case that more information are needed) is: {{course.courseConvener}}
+    <br />
+    <br />
+</h4>
+
+    {% endfor %}
+    {% endblock %}
+
