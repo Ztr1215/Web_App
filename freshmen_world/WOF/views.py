@@ -2,11 +2,12 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from WOF.forms import *
 from WOF.models import StudentUser, Course, University
 from WOF.xmlWriter import writeCourseToXML, writeUniversityToXML
-import xml.etree.ElementTree as ET, os
+import xml.etree.ElementTree as ET, os, datetime as datetime
 
 def index(request):
 	context_dict = {}
@@ -160,7 +161,6 @@ def add_university(request):
 																'university_created' : university_created,
 																'university' : university})
 
-
 def show_university(request, university_name_slug):
 	context_dict = {}
 	try:
@@ -190,6 +190,69 @@ def get_course_info(request, course_name_slug):
 		return JsonResponse({}, status=400)
 	else:
 		return JsonResponse({}, status=400)
+
+def get_task_info(request, monthNum : int):
+	if request.is_ajax and request.method == "POST":
+		print("good job")
+		return JsonResponse({"answer": "answer"}, 200)
+	else:
+		return JsonResponse({"people" : "not working"}, 200)
+
+
+# HELPER FUNCTION NOT VIEW
+def get_task_name(taskObject):
+	return str(taskObject)
+
+@csrf_exempt
+def find_tasks(request):
+	# Need to check database for Tasks with datetime
+	if request.is_ajax and request.method == "POST":
+		if StudentUser.objects.filter(user=request.user).exists():
+			student_user = StudentUser.objects.filter(user=request.user)[0]
+			day =  request.POST.get("day")
+			month = request.POST.get("month")
+			year = request.POST.get("year")
+			datetime_given = datetime.datetime(int(year), int(month), int(day))
+			all_tasks = list(map(get_task_name, Task.objects.filter(dueDate = datetime_given, studentUser = student_user)))
+			# print(all_tasks)
+			# user_tasks = list(all_tasks.filter(studentUser=student_user))
+
+			return JsonResponse({"tasks" : all_tasks})
+		else:
+			return JsonResponse({"tasks" : []})
+	else:
+		return Json({"tasks" : "database search failed"})
+
+
+
+all_months = dict(January=1, February=2, March=3, April=4, May=5, 
+				June=6, July=7, August=8, September=9, October=10,
+				November=11, December=12)
+
+@csrf_exempt
+def add_task(request):
+	if request.is_ajax and request.method == "POST":
+		if request.user.is_authenticated and StudentUser.objects.filter(user=request.user).exists():
+			student_user = StudentUser.objects.filter(user=request.user)[0]
+			task_name = request.POST.get('task')
+			day = request.POST.get('dayTime')
+			month = request.POST.get('monthTime')
+			year = request.POST.get('yearTime')
+			print(f"{task_name=}, {day=}, {month=}, {year=}")
+			response_data = {}
+			actualMonth = all_months[month]
+
+			date_created = datetime.datetime(int(year), int(actualMonth), int(day))
+			created_task = Task.objects.create(name=task_name, dueDate=date_created, studentUser=student_user)
+			created_task.save()
+
+			response_data['result'] = "success"
+			response_data['user'] = str(student_user)
+
+			return JsonResponse(response_data, status=200)
+		elif not request.user.is_authenticated:
+			return redirect(reverse('WOF:user_login'))
+	return JsonResponse({"result" : "failure"})
 
 def task_manager(request):
 	context_dict = {}

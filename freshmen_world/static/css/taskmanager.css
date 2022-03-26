@@ -1,15 +1,15 @@
-.body_block {
-    width: 80vw;
-    margin: 0 auto;
+.task-manager-body {
+    background-position: bottom;
+    border-radius: 20px;
+    color: grey;
     display: grid;
-    grid-template-rows: 60px 60px 60px 1fr;
     font-size: 16px;
     font-weight: bold;
-    border-radius: 20px;
-    overflow: hidden;
-    color: grey;
+    grid-template-rows: 60px 60px 60px 1fr;
+    margin: 0 auto;
     opacity: 0.9;
-    background-position: bottom;
+    overflow: hidden;
+    width: 100%;
 }
 
 .first_part {
@@ -84,6 +84,7 @@
     border: 1px solid white;
     display: grid;
     grid-template-rows: 20px 2fr;
+    height: 100%;
     cursor: pointer;
 }
 
@@ -98,11 +99,18 @@
 }
 
 .message {
-    max-width: 1/8vw;
-    margin: 10px auto;
-    display: grid;
-    justify-content: center;
     align-items: center;
+    display: grid;
+    font-size: 0.7rem;
+    height: 30px;
+    justify-content: center;
+    width: 100%;
+    margin: 10px auto;
+    overflow: hidden;
+}
+
+.message:hover {
+    overflow-y: auto;
 }
 
 .addTask {

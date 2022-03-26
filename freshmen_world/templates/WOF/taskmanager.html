@@ -2,197 +2,66 @@
 {% load staticfiles %}
 
 {% block title_block %}
-Task Manager
+    Task Manager
 {% endblock %}
 
 {% block body_block %}
-<div class="body_block" id="body_block">
-    <link rel="stylesheet" href="{% static 'css/all.css' %}">
-    <link rel="stylesheet" href="{% static 'css/taskmanager.css' %}">
-    <div class="first_part">
-        <div class="course">Courses</div>
-        <div class="month">Date</div>
-    </div>
-
-    <div class="title">
-        <div id="last_month">Last Month</div>
-        <div id="year"></div>
-        <div id="month"></div>
-        <div id="next_month">Next Month</div>
-    </div>
-
-    <div class="week">
-        <div id="Monday">Monday</div>
-        <div id="Tuesday">Tuesday</div>
-        <div id="Wednesday">Wednesday</div>
-        <div id="Thursday">Thursday</div>
-        <div id="Friday">Friday</div>
-        <div id="Saturday">Saturday</div>
-        <div id="Sunday">Sunday</div>
-    </div>
-
-    <div class="third_part" id="thirdpart">
-    </div>
-
-    <div id="addTask" class="addTask">
-        <div class="closeDiv">
-            <button onclick="closeWindow()">X</button>
+    {% csrf_token %}
+    <script type="text/javascript" src="{% static 'js/taskmanager.js' %}"></script>
+    <div class="task-manager-body" id="body_block">
+        <link rel="stylesheet" href="{% static 'css/all.css' %}">
+        <link rel="stylesheet" href="{% static 'css/taskmanager.css' %}">
+        <div class="first_part">
+            <div class="course">Courses</div>
+            <div class="month">Date</div>
         </div>
-        <div class="container">
-            <form action="taskmanager.html" method="get">
-                <label for="task">Task Name</label>
-                <input type="text" id="task" name="task" placeholder="Your task is..">
 
-                <label for="courseName">Course Name</label>
-                <input type="text" id="courseName" name="courseName" placeholder="Your course name..">
+        <div class="title">
+            <div id="last_month" onclick="update_last_month()">Last Month</div>
+            <div id="year"></div>
+            <div id="month"></div>
+            <div id="next_month" onclick="update_next_month()">Next Month</div>
+        </div>
 
-                <label for="monthTime">Month</label>
-                <select id="monthTime" name="monthTime" onchange="addDayOption()">
-                </select>
+        <div class="week">
+            <div id="Monday">Monday</div>
+            <div id="Tuesday">Tuesday</div>
+            <div id="Wednesday">Wednesday</div>
+            <div id="Thursday">Thursday</div>
+            <div id="Friday">Friday</div>
+            <div id="Saturday">Saturday</div>
+            <div id="Sunday">Sunday</div>
+        </div>
 
-                <label for="dayTime">Day</label>
-                <select id="dayTime" name="dayTime">
-                </select>
+        <div class="third_part" id="thirdpart">
+        </div>
 
-                <input type="submit" value="Submit">
+        <div id="addTask" class="addTask">
+            <div class="closeDiv">
+                <button onclick="closeWindow()">X</button>
+            </div>
+            <div class="container">
+                <form action="{% url 'WOF:add_task' %}" method="POST">
+                    <label for="task">Task Name</label>
+                    <input type="text" id="task" name="task" placeholder="Your task is...">
+                    
+                    <label for="yearTime">Year</label>
+                    <select id="yearTime" name="yearTime">
+                    </select>
 
-            </form>
+                    <label for="monthTime">Month</label>
+                    <select id="monthTime" name="monthTime" onchange="addDayOption()">
+                    </select>
 
+                    <label for="dayTime">Day</label>
+                    <select id="dayTime" name="dayTime">
+                    </select>
+
+                    <input type="submit" value="Submit">
+
+                </form>
+
+            </div>
         </div>
     </div>
-</div>
-
-
-<script type="text/javascript">
-    window.onload = function () {
-        document.getElementById("body_block").style.backgroundImage = "url({% static 'images/taskmanagerbackground.jpg' %})";
-        let dayCalculate = 1;
-        let thirdPart = document.getElementById("thirdpart");
-
-        for (var i = 0; i < 6; i++) {
-            let perline = document.createElement("div");
-            perline.setAttribute("class", "perline");
-            for (var j = 0; j < 7; j++) {
-                let date = document.createElement("div");
-                let day = document.createElement("div");
-                let message = document.createElement("div");
-                date.setAttribute("class", "date");
-                date.setAttribute("onclick", "showWindow(this)");
-                day.setAttribute("class", "day");
-                day.setAttribute("id", dayCalculate);
-                var messageid = "message" + dayCalculate;
-                message.setAttribute("class", "message");
-                message.setAttribute("id", messageid.toString());
-                date.appendChild(day);
-                date.appendChild(message);
-                perline.appendChild(date);
-                dayCalculate += 1;
-            }
-            thirdPart.appendChild(perline);
-        }
-        update();
-        for (var i = 7; i <= 27; i+=2) {
-            let p1 = document.createElement("p");
-            let p2 = document.createElement("p");
-            let p3 = document.createElement("p");
-            p1.innerHTML = "OOSE"
-            p1.style.lineHeight = "10px";
-            p2.innerHTML = "NOSE"
-            p2.style.lineHeight = "10px";
-            p3.innerHTML = "MATH2"
-            p3.style.lineHeight = "10px";
-            var messageid = "message" + i;
-            document.getElementById(messageid).appendChild(p1);
-            document.getElementById(messageid).appendChild(p2);
-            document.getElementById(messageid).appendChild(p3);
-        }
-    }
-
-
-    let date = new Date();
-    let currentMonth = date.getMonth();
-
-    function update() {
-        let year = date.getFullYear();
-        let month = date.getMonth();
-        let day = date.getDate();
-        let firstDay = new Date(year, month, 0).getDay();
-        let monthLength = new Date(year, month + 1, 0).getDate();
-        console.log(monthLength);
-
-
-        let array = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-        document.getElementById("year").innerHTML = year;
-        document.getElementById("month").innerHTML = array[month];
-
-        let j = firstDay;
-        let z = 1;
-        for (let i = 1; i <= 42; i++) {
-            document.getElementById(i).innerHTML = "";
-        }
-        for (let i = 1; i <= monthLength; i++) {
-            document.getElementById(j + i).innerHTML = z;
-            if (document.getElementById(j + i).innerHTML == day && document.getElementById("month").innerHTML == array[currentMonth]) {
-                document.getElementById(j + i).style.color = "red";
-            } else {
-                document.getElementById(j + i).style.color = "grey";
-            }
-            z++;
-        }
-
-    }
-
-    document.getElementById("last_month").onclick = function () {
-        date.setMonth(date.getMonth() - 1);
-        update();
-    };
-    document.getElementById("next_month").onclick = function () {
-        date.setMonth(date.getMonth() + 1);
-        update();
-    };
-</script>
-
-
-<script type="text/javascript">
-    let array = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    date = new Date();
-    addMonthOptions();
-    function addMonthOptions() {
-        var option_month = document.getElementById("monthTime");
-        for (var i = 0; i < 12; i++) {
-            option_month.add(new Option(array[i], "value"))
-
-            var option_day = document.getElementById("monthTime");
-        };
-    };
-    function addDayOption() {
-        var index = document.getElementById("monthTime").selectedIndex;
-        console.log(index);
-        var monthLength = new Date(date.getFullYear(), index + 1, 0).getDate();
-        var option_day = document.getElementById("dayTime");
-        option_day.options.length = 0;
-        for (var i = 1; i < monthLength + 1; i++) {
-            option_day.add(new Option(i, "value"));
-        };
-    };
-
-    var showIndex;
-    function showWindow(obj) {
-        document.getElementById("addTask").style.display = 'block';
-        showIndex = obj.id;
-    };
-
-    function closeWindow() {
-        document.getElementById("addTask").style.display = "none";
-    };
-
-
-</script>
-
-<script>
-    function submit() {
-        url = "http://127.0.0.1:8000/WOF/taskmanager/"
-    }
-</script>
 {% endblock %}

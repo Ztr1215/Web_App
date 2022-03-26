@@ -38,7 +38,7 @@ class Task(models.Model):
     name = models.CharField(max_length=40, unique = True)
     completed = models.BooleanField(default=False);
     dueDate = models.DateField(verbose_name = ("Creation date"), auto_now_add=False, null=True)
-    timePlanned = models.TimeField(auto_now=False, auto_now_add=False)
+    timePlanned = models.TimeField(auto_now=False, auto_now_add=False, null=True)
     studentUser = models.ForeignKey(StudentUser, on_delete=models.CASCADE, null=False)
     slug = models.SlugField(unique=True)
 

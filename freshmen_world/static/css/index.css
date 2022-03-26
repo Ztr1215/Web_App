@@ -1,6 +1,6 @@
 .mainbody {
-    width: 1360px;
-    height: 1000px;
+    width: 100%;
+    height: 100%;
     margin: 0 auto;
     border-top: 2px solid black;
     display: grid;
