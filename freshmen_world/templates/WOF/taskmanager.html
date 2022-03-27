@@ -8,9 +8,12 @@
 {% block body_block %}
     {% csrf_token %}
     <script type="text/javascript" src="{% static 'js/taskmanager.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'css/taskmanager.css' %}">
+    {% if not user.is_authenticated %}
+        <h2 id="h2-logged-in">User must be logged in to add/view their tasks</h2>
+    {% endif %}
     <div class="task-manager-body" id="body_block">
-        <link rel="stylesheet" href="{% static 'css/all.css' %}">
-        <link rel="stylesheet" href="{% static 'css/taskmanager.css' %}">
         <div class="first_part">
             <div class="course">Courses</div>
             <div class="month">Date</div>
@@ -41,8 +44,8 @@
                 <button onclick="closeWindow()">X</button>
             </div>
             <div class="container">
-                <form action="{% url 'WOF:add_task' %}" method="POST">
-                    <label for="task">Task Name</label>
+                <form id="add_task_form" method="POST">
+                    <label id="task-text" for="task">Task Name</label>
                     <input type="text" id="task" name="task" placeholder="Your task is...">
                     
                     <label for="yearTime">Year</label>

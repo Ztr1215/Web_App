@@ -12,10 +12,10 @@ $().ready( function () {
     document.getElementById("img5").style.backgroundImage = "url(/static/images/img_5.jpg)"
 
     // If the University is in the Glasgow
-    // var url = "http://api.weatherapi.com/v1/current.json?key=9df25054928f44b4975134755222403&q=Glasgow&aqi=yes";
+    var url = "http://api.weatherapi.com/v1/current.json?key=9df25054928f44b4975134755222403&q=Glasgow&aqi=yes";
 
     // If the University is in the Melrose
-    var url = "http://api.weatherapi.com/v1/current.json?key=9df25054928f44b4975134755222403&q=Melrose&aqi=yes";
+    // var url = "http://api.weatherapi.com/v1/current.json?key=9df25054928f44b4975134755222403&q=Melrose&aqi=yes";
 
     var request;
     if (window.XMLHttpRequest) {

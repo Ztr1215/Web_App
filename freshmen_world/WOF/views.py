@@ -255,10 +255,10 @@ def add_task(request):
 	if request.is_ajax and request.method == "POST":
 		if request.user.is_authenticated and StudentUser.objects.filter(user=request.user).exists():
 			student_user = StudentUser.objects.filter(user=request.user)[0]
-			task_name = request.POST.get('task')
-			day = request.POST.get('dayTime')
-			month = request.POST.get('monthTime')
-			year = request.POST.get('yearTime')
+			task_name = request.POST.get('task_name')
+			day = request.POST.get('day')
+			month = request.POST.get('month')
+			year = request.POST.get('year')
 			response_data = {}
 			actualMonth = all_months[month]
 
@@ -268,7 +268,6 @@ def add_task(request):
 
 			response_data['result'] = "success"
 			response_data['user'] = str(student_user)
-
 			return JsonResponse(response_data, status=200)
 		elif not request.user.is_authenticated:
 			return error(request, "Must be logged in to make a task")

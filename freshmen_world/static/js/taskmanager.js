@@ -154,6 +154,7 @@ function getDayInfo(day, firstDay, month, monthLength, year) {
             let actualDay = day + firstDay;
             if (tasks.length >= 1) {
                 for (var i=0; i < tasks.length; i++) {
+                    console.log(tasks[i]);
                     add_task_information(actualDay, tasks[i]);
                 }
             } else {
@@ -164,27 +165,36 @@ function getDayInfo(day, firstDay, month, monthLength, year) {
     xhr.send("day="+dayString+"&month="+monthString+"&year="+yearString);
 }
 
-function add_task() {
-    
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", 'add_task/', true);
-
-    var task_name = $("#task").val().toString();
-    var year = $("#yearTime").val();
-    var month = $("#monthTime").val();
-    var day = $("#dayTime").val();
-
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-    xhr.onreadystatechange = function() { 
-        if (this.readyState == 4 && this.status == 200) {
-            let messageDictionary = JSON.parse(this.responseText);
-            console.log(JSON.stringify(messageDictionary));
-        }
-    }
-    xhr.send("task_name="+task_name+"&year="+year+"&month="+month+"&day="+day);
-};
-
 function add_task_information(i, task_information) {
-    $("#"+i.toString()).next(".message").text(task_information); 
+    $("#"+i.toString()).next(".message").append(task_information + "<br/>"); 
 }
+
+
+$(document).ready( function() { 
+    $('#add_task_form').submit(function(e) {
+        e.preventDefault();
+
+        var taskValue = $("#task").val().toString();
+        if (taskValue === '') {
+            if ($("#task-text").text().indexOf("cannot") === -1) { $("#task-text").append(".\n Task name cannot be empty"); }
+            return
+        }
+        var dayValue = $("#dayTime option:selected").text();
+        var monthValue = $("#monthTime").val();
+        var yearValue = $("#yearTime option:selected").text();
+        let firstDay = new Date(year, month, 0).getDay();
+
+
+        $.ajax({
+            type: 'POST',
+            url: 'add_task/',
+            data: {
+                task_name : taskValue,
+                year : yearValue,
+                month : monthValue,
+                day : dayValue,
+            },
+            dataType : "json"
+        })
+    });
+});

@@ -12,6 +12,10 @@
     width: 100%;
 }
 
+#h2-logged-in {
+    text-align: center;
+}
+
 .first_part {
     grid-template-columns: 1fr 3fr;
     display: grid;
