@@ -29,8 +29,6 @@ $().ready( function() {
     addYearOptions();
     addMonthOptions();
     addDayOption();
-
-
 });
 
 // End of ready function
@@ -116,6 +114,7 @@ function addMonthOptions() {
         var option_day = document.getElementById("monthTime");
     };
 };
+
 function addDayOption() {
     var index = document.getElementById("monthTime").selectedIndex;
     var monthLength = new Date(date.getFullYear(), index + 1, 0).getDate();
@@ -154,7 +153,6 @@ function getDayInfo(day, firstDay, month, monthLength, year) {
             let actualDay = day + firstDay;
             if (tasks.length >= 1) {
                 for (var i=0; i < tasks.length; i++) {
-                    console.log(tasks[i]);
                     add_task_information(actualDay, tasks[i]);
                 }
             } else {
@@ -166,35 +164,40 @@ function getDayInfo(day, firstDay, month, monthLength, year) {
 }
 
 function add_task_information(i, task_information) {
-    $("#"+i.toString()).next(".message").append(task_information + "<br/>"); 
+    var day = i.toString();
+    if ($("#"+day).next(".message").text().indexOf(task_information) === -1) { 
+        $("#"+day).next(".message").append(task_information + "<br/>");
+    }
+    return;
 }
 
-
-$(document).ready( function() { 
-    $('#add_task_form').submit(function(e) {
+function add_task() {
+    $("#add_task_form").submit( function(e) {
         e.preventDefault();
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", 'add_task/', true);
 
-        var taskValue = $("#task").val().toString();
-        if (taskValue === '') {
-            if ($("#task-text").text().indexOf("cannot") === -1) { $("#task-text").append(".\n Task name cannot be empty"); }
-            return
-        }
-        var dayValue = $("#dayTime option:selected").text();
+        var task_name = $("#task").val().toString();
+        if (task_name === '') {
+            if ($("#task-text").text().indexOf("cannot") === -1) { 
+                $("#task-text").append(".\n Task name cannot be empty"); 
+            }
+            return;
+        };
+
+        var yearValue = $("#yearTime option:selected ").text();
         var monthValue = $("#monthTime").val();
-        var yearValue = $("#yearTime option:selected").text();
-        let firstDay = new Date(year, month, 0).getDay();
+        var dayValue = $("#dayTime option:selected").text();
 
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-        $.ajax({
-            type: 'POST',
-            url: 'add_task/',
-            data: {
-                task_name : taskValue,
-                year : yearValue,
-                month : monthValue,
-                day : dayValue,
-            },
-            dataType : "json"
-        })
+        xhr.onreadystatechange = function() { 
+            if (this.readyState == 4 && this.status == 200) {
+                let messageDictionary = JSON.parse(this.responseText);
+                update();
+                closeWindow();
+            }
+        }
+        xhr.send("task_name="+task_name+"&year="+yearValue+"&month="+monthValue+"&day="+dayValue);
     });
-});
+};

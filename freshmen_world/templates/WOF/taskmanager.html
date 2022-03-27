@@ -45,6 +45,7 @@
             </div>
             <div class="container">
                 <form id="add_task_form" method="POST">
+                    {% csrf_token %}
                     <label id="task-text" for="task">Task Name</label>
                     <input type="text" id="task" name="task" placeholder="Your task is...">
                     
@@ -60,7 +61,7 @@
                     <select id="dayTime" name="dayTime">
                     </select>
 
-                    <input type="submit" value="Submit">
+                    <input type="submit" value="Submit" onclick="add_task()">
 
                 </form>
 
