@@ -35,13 +35,13 @@
                         {% for course in university_courses %}
                                 <a href="{% url 'WOF:show_course' course.slug %}">{{ course.name }}</a>
                         {% endfor %}
-                        {% if is_admin %}
+                        {% if is_admin and uni_admin %}
                             <a href="{% url 'WOF:add_course' %}">Add Course</a>
                         {% endif %}
                         </div>
                     </div>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'WOF:profile' %}">Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'WOF:profile' %}">Profile ({{ user.username }})</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'WOF:logout' %}">Logout</a></li>
              <!-- Student, not at uni -->
             {% elif user.is_authenticated and not student_university %}
@@ -58,7 +58,7 @@
                         </div>
                     </div>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'WOF:profile' %}">Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'WOF:profile' %}">Profile ({{ user.username }}) </a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'WOF:logout' %}">Logout</a></li>
             <!-- Not logged in  -->
             {% else %}

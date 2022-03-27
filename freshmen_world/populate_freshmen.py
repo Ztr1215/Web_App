@@ -50,7 +50,7 @@ def populate():
         'password': "HeavensDoorKnocker",
         'degree': "Music History",
         'level': 3,
-        'isAdmin': False,
+        'isAdmin': True,
         'tasks': bobbyd_task
         },
         {'username': "MaclaurinMan",
@@ -71,7 +71,7 @@ def populate():
         'password': "MatthewCantWalk",
         'degree': "Helping old people",
         'level': 3,
-        'isAdmin': False,
+        'isAdmin': True,
         'tasks': matty_task
         },
         {'username': "BigBen",
@@ -139,6 +139,9 @@ def populate():
             created_user = add_user(created_uni, user['username'], user['firstName'], 
                             user['secondName'], user['password'], 
                             user['degree'], user['level'], user['isAdmin'])
+            if user['isAdmin']:
+                created_user.uni_admin = created_uni
+                created_user.save()
             for task in user['tasks']:
             # Assign each task to specific user
                 add_task(created_user, task['name'], task['completed'], task['dueDate'], task['timePlanned'])

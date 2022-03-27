@@ -23,8 +23,11 @@ def selector(request):
 @login_required
 def profile(request):
 	updated = False
+	student_user_university = None
 	if (StudentUser.objects.filter(user=request.user).exists()):
 		student_user = StudentUser.objects.filter(user=request.user)[0]
+		if student_user.university != None:
+			student_user_university = student_user.university
 	else:
 		return redirect(reverse('WOF:index'))
 	
@@ -42,7 +45,6 @@ def profile(request):
 			student_user_profile = student_user_change_profile_form.save()
 			student_user_profile.user = student_user 
 			student_user_profile.save()
-
 			login(request, student_user)
 		else:
 			print(student_user_change_form.errors, student_user_change_profile_form.errors)
@@ -51,6 +53,7 @@ def profile(request):
 		student_user_change_profile_form = StudentUserChangeProfileForm(instance=student_user)
 	return render(request, 'WOF/account.html', context={'student_user_change_form' : student_user_change_form,
 														'student_user_change_profile_form' : student_user_change_profile_form,
+														'student_user_university' : student_user_university,
 														'updated' : updated})
 
 def user_login(request):
@@ -139,18 +142,45 @@ def add_course(request):
 	return render(request, 'WOF/add_course.html', context={'course_form' : course_form,
 															'course_created' : course_created,
 															'course' : course})
+
+@login_required
+def delete_course(request, course_name_slug):
+	if request.method == "POST" and Course.objects.filter(slug=course_name_slug).exists():
+		course = Course.objects.filter(slug=course_name_slug)[0]
+		name_of_deleted = course.name
+		course.delete()
+		return file_deleted(request, name_of_deleted)
+	else:
+		return error(request, f"Failed to delete course with slug {course_name_slug}")
+
+@login_required
+@csrf_exempt
+def delete_university(request):
+	if request.is_ajax and request.method == "POST":
+		print("okay")
+		university_name_slug = request.POST.get('university_slug')
+		if University.objects.filter(slug=university_name_slug).exists():
+			print("deleting task ongoing")
+			uni_deleted = University.objects.filter(slug=university_name_slug)[0]
+			name_of_deleted = uni_deleted.name
+			uni_deleted.delete()
+		else:
+			error(request, "University not found")
+	return profile(request)
+
 def add_university(request):
 	university_created = False
 	university = None
 	if request.method == "POST":
 		university_form = UniversityForm(request.POST)
-		if university_form.is_valid():
+		if university_form.is_valid() and StudentUser.objects.filter(user=request.user)[0].isAdmin:
 			university = university_form.save()
 			student_user = StudentUser.objects.filter(user=request.user)[0]
 
 			# writeUniversityToXML
 			writeUniversityToXML(university.slug)
 			student_user.university = university
+			student_user.uni_admin = university
 			student_user.save()
 			university_created = True
 		else:
@@ -163,15 +193,14 @@ def add_university(request):
 
 def show_university(request, university_name_slug):
 	context_dict = {}
-	try:
+	if University.objects.filter(slug=university_name_slug).exists():
 		university = University.objects.filter(slug=university_name_slug)[0]
 		courses = list(Course.objects.filter(university=university))
 		context_dict['university'] = university
 		context_dict['courses'] = courses
-	except University.DoesNotExist:
-		context_dict['university'] = None
-		context_dict['courses'] = courses
-	return render(request, 'WOF/university_base.html', context=context_dict)
+		return render(request, 'WOF/university_base.html', context=context_dict)
+	else:
+		return error(request, f"University at: {university_name_slug} does not exist")
 
 def get_course_info(request, course_name_slug):
 	if request.is_ajax and request.method == "GET":
@@ -186,17 +215,11 @@ def get_course_info(request, course_name_slug):
 				# If found correct course
 				if (course.attrib.get('id') == course_name_slug):
 					information = course.text
-					return JsonResponse(course.text, status=200, safe=False)
-		return JsonResponse({}, status=400)
+					print(information)
+					return JsonResponse({ 'course_text' : information })
+		return JsonResponse({})
 	else:
-		return JsonResponse({}, status=400)
-
-def get_task_info(request, monthNum : int):
-	if request.is_ajax and request.method == "POST":
-		print("good job")
-		return JsonResponse({"answer": "answer"}, 200)
-	else:
-		return JsonResponse({"people" : "not working"}, 200)
+		return JsonResponse({})
 
 
 # HELPER FUNCTION NOT VIEW
@@ -214,14 +237,12 @@ def find_tasks(request):
 			year = request.POST.get("year")
 			datetime_given = datetime.datetime(int(year), int(month), int(day))
 			all_tasks = list(map(get_task_name, Task.objects.filter(dueDate = datetime_given, studentUser = student_user)))
-			# print(all_tasks)
-			# user_tasks = list(all_tasks.filter(studentUser=student_user))
 
 			return JsonResponse({"tasks" : all_tasks})
 		else:
 			return JsonResponse({"tasks" : []})
 	else:
-		return Json({"tasks" : "database search failed"})
+		return error(request, "Error occurred while searching database")
 
 
 
@@ -238,7 +259,6 @@ def add_task(request):
 			day = request.POST.get('dayTime')
 			month = request.POST.get('monthTime')
 			year = request.POST.get('yearTime')
-			print(f"{task_name=}, {day=}, {month=}, {year=}")
 			response_data = {}
 			actualMonth = all_months[month]
 
@@ -251,8 +271,8 @@ def add_task(request):
 
 			return JsonResponse(response_data, status=200)
 		elif not request.user.is_authenticated:
-			return redirect(reverse('WOF:user_login'))
-	return JsonResponse({"result" : "failure"})
+			return error(request, "Must be logged in to make a task")
+	return error(request, "Database search failure")
 
 def task_manager(request):
 	context_dict = {}
@@ -260,5 +280,13 @@ def task_manager(request):
 	return response
  
 
+def error(request, error_message="No error/unknown error"):
+	context_dict = {}
+	context_dict['error'] = error_message
+	return render(request, 'WOF/error_page.html', context=context_dict)
 
 
+def file_deleted(request, file_name="File name not found"):
+	context_dict = {}
+	context_dict['file_deleted'] = file_name
+	return render(request, 'WOF/deleted_file.html', context=context_dict)

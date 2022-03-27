@@ -22,10 +22,11 @@ class University(models.Model):
 class StudentUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     
-    university = models.ForeignKey(University, on_delete=models.CASCADE, null=True)
+    university = models.ForeignKey(University, on_delete=models.SET_DEFAULT, default=None, null=True)
     degree = models.CharField(max_length=80, unique = False, default="", null=True)
     level = models.IntegerField(default=0, null=True)
     isAdmin = models.BooleanField(default=False, null=False)
+    uni_admin = models.OneToOneField(University, on_delete=models.SET_DEFAULT, default=None, null=True, related_name="+")
 
     class Meta:
         verbose_name_plural = 'Student Users'

@@ -28,9 +28,11 @@ def check_admin(request):
 		# Student User has admin field
 		if student_user.isAdmin != None:
 			# Student user is admin
-			if student_user.isAdmin == True:
-				return {'is_admin' : True}
-	return {'is_admin' : False}
+			if student_user.isAdmin and student_user.uni_admin != None:
+				return {'is_admin' : True, 'uni_admin' : True}
+			elif student_user.isAdmin and student_user.uni_admin == None:
+				return {'is_admin' : True, 'uni_admin' : False}
+	return {'is_admin' : False, 'uni_admin' : False}
 
 def check_university(request):
 	if request.user.is_authenticated and StudentUser.objects.filter(user=request.user).exists():

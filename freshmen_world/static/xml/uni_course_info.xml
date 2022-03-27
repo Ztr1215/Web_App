@@ -8,4 +8,4 @@
 		<course id="dealing-with-old-people">Enjoy dealing with people over 60.</course>
 		<course id="avoiding-angry-farmers">Some people are not happy farmers, you will learn to avoid them.</course>
 	</university>
-</root>
+<university id="created-university" /><university id="university-of-glasgow" /></root>

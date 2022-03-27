@@ -165,10 +165,6 @@ function getDayInfo(day, firstDay, month, monthLength, year) {
 }
 
 function add_task() {
-    console.log($("#task").val());
-    console.log($("#yearTime").val());
-    console.log($("#monthTime").val());
-    console.log($("#dayTime").val());
     
     var xhr = new XMLHttpRequest();
     xhr.open("POST", 'add_task/', true);

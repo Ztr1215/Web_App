@@ -28,5 +28,10 @@
 			{{ course.courseNumber }}
 		</div>
 	</div>
-
+	{% if user.is_authenticated and uni_admin %}
+		<form action="{% url 'WOF:delete_course' course.slug %}" method="POST">
+			{% csrf_token %}
+			<button type="submit" id="delete-button">Delete course</button>
+		</form>	
+	{% endif %}
 {% endblock %}
