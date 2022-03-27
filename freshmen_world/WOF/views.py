@@ -222,33 +222,41 @@ def get_course_info(request, course_name_slug):
 		return JsonResponse({})
 
 
+arrayNums = [x for x in range(1,13)]
+months = ["January", "Febuary", "March", "April", "May", "June", 
+		"July", "August", "September", "October", "November", "December"];
+
+all_months = dict(zip(months, arrayNums))
+
 # HELPER FUNCTION NOT VIEW
-def get_task_name(taskObject):
-	return str(taskObject)
+def find_days_in_month(month : int, year : int):
+	monthNum = month
+	nextMonthNum = (monthNum + 1) % 12
+	nextMonth = int(arrayNums[nextMonthNum-1])
+	nextYear = year if nextMonth != 1 else year + 1 
+	return abs((datetime.datetime(nextYear, nextMonth, 1) - datetime.datetime(year, monthNum, 1)).days)
 
 @csrf_exempt
-def find_tasks(request):
-	# Need to check database for Tasks with datetime
+def find_tasks_month(request):
 	if request.is_ajax and request.method == "POST":
 		if StudentUser.objects.filter(user=request.user).exists():
 			student_user = StudentUser.objects.filter(user=request.user)[0]
-			day =  request.POST.get("day")
-			month = request.POST.get("month")
-			year = request.POST.get("year")
-			datetime_given = datetime.datetime(int(year), int(month), int(day))
-			all_tasks = list(map(get_task_name, Task.objects.filter(dueDate = datetime_given, studentUser = student_user)))
+			month = int(request.POST.get("month")) + 1
+			year = int(request.POST.get("year"))
+			# Finding time between each month
+			daysInMonth = find_days_in_month(month, year)
+			tasks = {}
+			for i in range(1, daysInMonth+1):
+				date = datetime.datetime(year, month, i)
+				if Task.objects.filter(dueDate=date).exists():
+					tasks[i] = str(Task.objects.get(dueDate=date))
 
-			return JsonResponse({"tasks" : all_tasks})
+			return JsonResponse({"tasks" : tasks})
 		else:
 			return JsonResponse({"tasks" : []})
 	else:
 		return error(request, "Error occurred while searching database")
 
-
-
-all_months = dict(January=1, February=2, March=3, April=4, May=5, 
-				June=6, July=7, August=8, September=9, October=10,
-				November=11, December=12)
 
 @csrf_exempt
 def add_task(request):

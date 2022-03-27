@@ -60,20 +60,16 @@ function update() {
 
     let j = firstDay;
     let z = 1;
-    // Clearing information from last month, from before first day
-    for (let i = 1; i <= j; i++) {
-        $("#"+i.toString()).text("");
-        $("#"+i.toString()).next(".message").text("");
-    }
-    // Clearing information from lat month, when month had more days/finished
-    for (let i = monthLength; i < 42; i++) {
-        $("#"+i.toString()).text("");
+
+    // Clearing information from last month
+    for (let i = 1; i < 42; i++) {
+        if (i == monthLength || i <= j) {
+            $("#"+i.toString()).text("");
+        }
         $("#"+i.toString()).next(".message").text("");
     }
 
-    for (let i = 1; i <= 42-j; i++) {
-        getDayInfo(i, j, month+1, monthLength, year);
-    }
+    applyMonthInfo(firstDay, month, monthLength, year);
 
     for (let i = 1; i <= monthLength; i++) {
         document.getElementById(j + i).innerHTML = z;
@@ -109,7 +105,7 @@ function addMonthOptions() {
         } else {
             new_month = new Option(array[i], array[i]);
         }
-        option_month.add(new_month  )
+        option_month.add(new_month);
 
         var option_day = document.getElementById("monthTime");
     };
@@ -135,32 +131,24 @@ function closeWindow() {
     document.getElementById("addTask").style.display = "none";
 };
 
-function getDayInfo(day, firstDay, month, monthLength, year) {
+function applyMonthInfo(firstDay, month, monthLength, year) {
     var xhr = new XMLHttpRequest();
-    if (day + firstDay > monthLength) {
-        return;
-    }
     xhr.open("POST", 'server/', true);
-    let dayString = day.toString();
     let monthString = month.toString();
     let yearString = year.toString();
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-    xhr.onreadystatechange = function() { 
+    xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             let messageDictionary = JSON.parse(this.responseText);
-            let tasks = messageDictionary.tasks;
-            let actualDay = day + firstDay;
-            if (tasks.length >= 1) {
-                for (var i=0; i < tasks.length; i++) {
-                    add_task_information(actualDay, tasks[i]);
-                }
-            } else {
-                $("#"+actualDay.toString()).next(".message").text("");
-            } 
+            let tasks = messageDictionary.tasks
+            for (const [day, task] of Object.entries(tasks)) {
+                let actualDay = parseInt(day) + firstDay;
+                add_task_information(actualDay, task);
+            }
         }
     }
-    xhr.send("day="+dayString+"&month="+monthString+"&year="+yearString);
+    xhr.send("month="+monthString+"&year="+yearString);
 }
 
 function add_task_information(i, task_information) {
