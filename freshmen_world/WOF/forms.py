@@ -109,9 +109,9 @@ class StudentUserChangeProfileForm(forms.ModelForm):
 
 	def __init__(self, *args, **kwargs):
 		super(StudentUserChangeProfileForm, self).__init__(*args, **kwargs)
-		# self.fields['university'].required = True
-		# self.fields['degree'].required = False
-		# self.fields['level'].required = False
+		self.fields['university'].required = False
+		self.fields['degree'].required = False
+		self.fields['level'].required = False
 
 class CourseForm(forms.ModelForm):
 
