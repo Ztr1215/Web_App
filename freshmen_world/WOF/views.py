@@ -138,6 +138,8 @@ def add_course(request):
 		else:
 			print(course_form.errors)
 	else:
+		if not (StudentUser.objects.filter(user=request.user)[0].isAdmin):
+			return error(request, "Must be an admin to add a course")
 		course_form = CourseForm()
 	return render(request, 'WOF/add_course.html', context={'course_form' : course_form,
 															'course_created' : course_created,
