@@ -68,7 +68,7 @@ class TestTask(TestCase):
 			)
 
 	def test_task_is_assigned_slug(self):
-		self.assertEquals("pass-the-test", self.task1.slug)
+		self.assertEquals(f"pass-the-test-{self.task1.dueDate.year}-{self.task1.dueDate.month}-{self.task1.dueDate.day}", self.task1.slug)
 
 	def test_task_student_user(self):
 		self.assertEquals(self.student_user, self.task1.studentUser)

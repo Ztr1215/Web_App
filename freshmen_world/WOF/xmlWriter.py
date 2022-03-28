@@ -13,7 +13,6 @@ def writeCourseToXML(university_slug, courseSlug : str, courseDescription : str)
 			university_element = uni
 			break
 		university = University.objects.all()[0]
-	print(university_element)
 	course_element = ET.SubElement(university_element, "course")
 	course_element.set('id', courseSlug)
 	course_element.text = courseDescription

@@ -61,9 +61,7 @@ def user_login(request):
 	if request.method == 'POST':
 		username = request.POST.get('username')
 		password = request.POST.get('password')
-
 		user = authenticate(username=username, password=password)
-
 		if user:
 			if user.is_active:
 				login(request, user)
@@ -110,7 +108,6 @@ def user_logout(request):
 	logout(request)
 	return redirect(reverse('WOF:index'))
 
-	
 @login_required
 def show_course(request, course_name_slug):
 	context_dict = {}
@@ -126,6 +123,8 @@ def add_course(request):
 	course_created = False
 	course = None
 	if request.method == "POST":
+		if not (StudentUser.objects.filter(user=request.user)[0].isAdmin):
+			return error(request, "Must be an admin to add a course")
 		course_form = CourseForm(request.POST)
 		if course_form.is_valid():
 			course = course_form.save()
@@ -146,6 +145,10 @@ def add_course(request):
 
 @login_required
 def delete_course(request, course_name_slug):
+	if StudentUser.objects.filter(user=request.user).exists():
+		student_user = StudentUser.objects.filter(user=request.user)[0]
+		if not (student_user.isAdmin):
+			return error(request, "User is not an admin")
 	if request.method == "POST" and Course.objects.filter(slug=course_name_slug).exists():
 		course = Course.objects.filter(slug=course_name_slug)[0]
 		name_of_deleted = course.name
@@ -158,10 +161,8 @@ def delete_course(request, course_name_slug):
 @csrf_exempt
 def delete_university(request):
 	if request.is_ajax and request.method == "POST":
-		print("okay")
 		university_name_slug = request.POST.get('university_slug')
 		if University.objects.filter(slug=university_name_slug).exists():
-			print("deleting task ongoing")
 			uni_deleted = University.objects.filter(slug=university_name_slug)[0]
 			name_of_deleted = uni_deleted.name
 			uni_deleted.delete()
@@ -169,6 +170,7 @@ def delete_university(request):
 			error(request, "University not found")
 	return profile(request)
 
+@login_required
 def add_university(request):
 	university_created = False
 	university = None
@@ -185,13 +187,14 @@ def add_university(request):
 			student_user.save()
 			university_created = True
 		else:
-			print(university_form.errors)
+			error(request, str(university_form.errors))
 	else:
+		if not StudentUser.objects.filter(user=request.user)[0].isAdmin:
+			return error(request,  "User must be an admin")
 		university_form = UniversityForm()
 	return render(request, 'WOF/add_university.html', context={'university_form' : university_form,
 																'university_created' : university_created,
 																'university' : university})
-
 def show_university(request, university_name_slug):
 	context_dict = {}
 	if University.objects.filter(slug=university_name_slug).exists():
@@ -216,7 +219,6 @@ def get_course_info(request, course_name_slug):
 				# If found correct course
 				if (course.attrib.get('id') == course_name_slug):
 					information = course.text
-					print(information)
 					return JsonResponse({ 'course_text' : information })
 		return JsonResponse({})
 	else:
@@ -249,8 +251,8 @@ def find_tasks_month(request):
 			tasks = {}
 			for i in range(1, daysInMonth+1):
 				date = datetime.datetime(year, month, i)
-				if Task.objects.filter(dueDate=date).exists():
-					tasks[i] = str(Task.objects.get(dueDate=date))
+				if Task.objects.filter(dueDate=date, studentUser = student_user).exists():
+					tasks[i] = str(Task.objects.get(dueDate=date, studentUser = student_user))
 
 			return JsonResponse({"tasks" : tasks})
 		else:

@@ -1,15 +1,18 @@
+// put the array of pictures' name which is got from database.
 let images_arr = ["img_1.jpg", "img_2.jpg", "img_3.jpg", "img_4.jpg", "img_5.jpg"];
 
-$().ready( function () {
-    document.getElementById("content").style.backgroundImage = "url(/static/images/homepagebc.jpg)"
-    document.getElementById("info_of_uni").style.backgroundImage = "url(/static/images/homepagebc.jpg)"
-    document.getElementById("helper").style.backgroundImage = "url(/static/images/homepagebc.jpg)"
-    document.getElementById("weather").style.backgroundImage = "url(/static/images/homepagebc.jpg)"
-    document.getElementById("img1").style.backgroundImage = "url(/static/images/img_1.jpg)"
-    document.getElementById("img2").style.backgroundImage = "url(/static/images/img_2.jpg)"
-    document.getElementById("img3").style.backgroundImage = "url(/static/images/img_3.jpg)"
-    document.getElementById("img4").style.backgroundImage = "url(/static/images/img_4.jpg)"
-    document.getElementById("img5").style.backgroundImage = "url(/static/images/img_5.jpg)"
+let index = 0;
+let dotlist;
+
+$().ready(function () {
+    document.getElementById("content").style.backgroundImage = "url(/static/images/homepagebc.jpg)";
+    document.getElementById("info_of_uni").style.backgroundImage = "url(/static/images/homepagebc.jpg)";
+    document.getElementById("helper").style.backgroundImage = "url(/static/images/homepagebc.jpg)";
+    document.getElementById("weather").style.backgroundImage = "url(/static/images/homepagebc.jpg)";
+
+    let schoolimg = document.getElementById("schoolimg");
+
+    schoolimg.style.backgroundImage = "url(/static/images/" + images_arr[index] + ")";
 
     // If the University is in the Glasgow
     var url = "http://api.weatherapi.com/v1/current.json?key=9df25054928f44b4975134755222403&q=Glasgow&aqi=yes";
@@ -33,54 +36,24 @@ $().ready( function () {
     request.send();
 });
 
-let index = 1;
-let position = -40;
+// to change the background image.
 function right() {
-    if (index >= 1 && index < 5) {
-        position = position - 680;
-        document.getElementById("images").style.left = position + "px";
+    if (index >= 0 && index < images_arr.length - 1) {
         index += 1;
-    } else if (index = 5) {
-        document.getElementById("images").style.left = "-40px";
-        index = 1;
-        position = -40;
+        schoolimg.style.backgroundImage = "url(/static/images/" + images_arr[index] + ")";
+    } else {
+        index = 0;
+        schoolimg.style.backgroundImage = "url(/static/images/" + images_arr[index] + ")";
     }
 }
 
+// to change the background image.
 function left() {
-    if (index > 1 && index <= 5) {
-        position = position + 680;
-        document.getElementById("images").style.left = position + "px";
+    if (index > 0 && index <= images_arr.length - 1) {
         index -= 1;
-    } else if (index = 1) {
-        document.getElementById("images").style.left = "-2760px";
-        index = 5;
-        position = -2760
+        schoolimg.style.backgroundImage = "url(/static/images/" + images_arr[index] + ")";
+    } else {
+        index = images_arr.length - 1;
+        schoolimg.style.backgroundImage = "url(/static/images/" + images_arr[index] + ")";
     }
-}
-
-function dot1() {
-    document.getElementById("images").style.left = -40 + "px";
-    index = 1;
-    position = -40
-}
-function dot2() {
-    document.getElementById("images").style.left = -720 + "px";
-    index = 2;
-    position = -720
-}
-function dot3() {
-    document.getElementById("images").style.left = -1400 + "px";
-    index = 3;
-    position = -1400
-}
-function dot4() {
-    document.getElementById("images").style.left = -2080 + "px";
-    index = 4;
-    position = -2080
-}
-function dot5() {
-    document.getElementById("images").style.left = -2760 + "px";
-    index = 5;
-    position = -2760
 }
