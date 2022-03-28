@@ -182,8 +182,15 @@ function add_task() {
         xhr.onreadystatechange = function() { 
             if (this.readyState == 4 && this.status == 200) {
                 let messageDictionary = JSON.parse(this.responseText);
-                update();
-                closeWindow();
+                console.log(messageDictionary.result);
+                if (messageDictionary.result ==  "Task already exists") {
+                    if($("#task-text").text().indexOf("exists") === -1) {
+                        $("#task-text").append("<br /> Task already exists on that day");
+                    }
+                } else {
+                    update();
+                    closeWindow();
+                }
             }
         }
         xhr.send("task_name="+task_name+"&year="+yearValue+"&month="+monthValue+"&day="+dayValue);

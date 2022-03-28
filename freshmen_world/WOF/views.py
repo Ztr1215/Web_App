@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
+from django.template.defaultfilters import slugify
 from WOF.forms import *
 from WOF.models import StudentUser, Course, University
 from WOF.xmlWriter import writeCourseToXML, writeUniversityToXML
@@ -257,6 +258,9 @@ def find_tasks_month(request):
 	else:
 		return error(request, "Error occurred while searching database")
 
+def check_task_exists(task_name, dueDate):
+	slug_name = slugify(task_name)+f"-{dueDate.year}-{dueDate.month}-{dueDate.day}"
+	return (Task.objects.filter(slug=slug_name)).exists()
 
 @csrf_exempt
 def add_task(request):
@@ -271,6 +275,8 @@ def add_task(request):
 			actualMonth = all_months[month]
 
 			date_created = datetime.datetime(int(year), int(actualMonth), int(day))
+			if (check_task_exists(task_name, date_created)):
+				return JsonResponse({"result": "Task already exists"})
 			created_task = Task.objects.create(name=task_name, dueDate=date_created, studentUser=student_user)
 			created_task.save()
 

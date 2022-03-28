@@ -3,6 +3,7 @@ from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+import datetime as datetime
 
 class University(models.Model):
     name = models.CharField(max_length = 80,unique = True)
@@ -36,15 +37,15 @@ class StudentUser(models.Model):
 
 
 class Task(models.Model):
-    name = models.CharField(max_length=40, unique = True)
+    name = models.CharField(max_length=40, unique=False)
     completed = models.BooleanField(default=False);
-    dueDate = models.DateField(verbose_name = ("Creation date"), auto_now_add=False, null=True)
+    dueDate = models.DateField(verbose_name = ("Creation date"), auto_now_add=False, null=False, default=datetime.datetime.now())
     timePlanned = models.TimeField(auto_now=False, auto_now_add=False, null=True)
     studentUser = models.ForeignKey(StudentUser, on_delete=models.CASCADE, null=False)
     slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
+        self.slug = slugify(self.name)+f"-{self.dueDate.year}-{self.dueDate.month}-{self.dueDate.day}"
         super(Task, self).save(*args, **kwargs)
 
 
